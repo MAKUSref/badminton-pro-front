@@ -37,18 +37,15 @@ const AddGroupsModal = ({ disabled = false }: { disabled?: boolean }) => {
       <Button variant="contained" onClick={() => setOpen(true)} disabled={disabled}>
         Utwórz kategorie
       </Button>
-      <Dialog onClose={() => setOpen(false)} open={open} fullScreen>
+      <Dialog onClose={() => setOpen(false)} open={open}>
         <DialogTitle>Stwórz grupy</DialogTitle>
         <DialogContent>
           <DialogContentText fontSize="0.8rem">
             Utwórz grupy które będą dostępne dla zawodników przy zapisach.
           </DialogContentText>
-          <Stack direction="row" justifyContent="space-between" mt={3}>
+          <Stack direction="row" justifyContent="center" mt={3} minHeight={200}>
             <AddGroup gender="MAN" type="SINGLE" />
             <AddGroup gender="WOMAN" type="SINGLE" />
-            <AddGroup gender="MAN" type="DOUBLE" />
-            <AddGroup gender="WOMAN" type="DOUBLE" />
-            <AddGroup type="MIX" />
           </Stack>
         </DialogContent>
         <DialogActions>

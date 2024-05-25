@@ -2,12 +2,11 @@ import { TableRow, TableCell, Button, Tooltip, Box } from '@mui/material';
 import { useState } from 'react';
 
 import EditUserModal from '../EditUserModal';
-import RoleChip from '../RoleChip';
-import { User } from '@/redux/types/Player';
+import { Player } from '@/redux/types/Player';
 
 //TODO: Suspend User
 
-const UserRow = ({ user }: { user: User }) => {
+const UserRow = ({ user }: { user: Player }) => {
   const [actionsVisible, setActionsVisible] = useState(false);
 
   return (
@@ -21,9 +20,7 @@ const UserRow = ({ user }: { user: User }) => {
       </TableCell>
       <TableCell align="right">{user.email}</TableCell>
       <TableCell align="right">{user.phoneNumber}</TableCell>
-      <TableCell align="right">
-        {user.role.length === 0 ? 'Brak roli' : user.role.map((r) => <RoleChip key={r} role={r} />)}
-      </TableCell>
+      <TableCell align="right">{'Brak roli'}</TableCell>
       <TableCell align="right">
         {actionsVisible ? (
           <>

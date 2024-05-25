@@ -4,12 +4,16 @@ import { Controller, useFormContext } from 'react-hook-form';
 
 import { SingleForm } from '..';
 import InputSkeleton from '@/components/skeletons/InputSkeleton';
-import { useGetAllUsersAvailableForSingleQuery } from '@/redux/api/userApi';
+import { useGetAllPlayersAvailableForSingleQuery } from '@/redux/api/playerApi';
 
 const PlayerSelect = () => {
   const { control, watch, setValue } = useFormContext<SingleForm>();
   const gender = watch('gender');
-  const { data: users, isLoading, isFetching } = useGetAllUsersAvailableForSingleQuery({ gender });
+  const {
+    data: users,
+    isLoading,
+    isFetching
+  } = useGetAllPlayersAvailableForSingleQuery({ gender });
 
   //Change value after group (gender) changed
   useEffect(() => {

@@ -7,11 +7,13 @@ import NavSecondaryButton from './NavSecondaryButton';
 
 import Logo from '../Logo';
 import { useGetAllGroupsQuery } from '@/redux/api/groupApi';
+import { useGetMyTournamentQuery } from '@/redux/api/tournamentApi';
 import PATH from '@/routes/urls';
 import COLOR from '@/themes/colors';
 
 const SideNav = () => {
   const { data: groups } = useGetAllGroupsQuery({});
+  const { data: tournament } = useGetMyTournamentQuery();
 
   return (
     <Stack
@@ -24,31 +26,26 @@ const SideNav = () => {
           <Logo />
         </Box>
         <Typography color={COLOR.LIGHT_GREY_TEXT} fontSize=".7rem" ml={3} mb={1}>
-          Trwająca Liga 2023/2024
+          {tournament?.name}
         </Typography>
         <Divider />
         <Stack paddingTop={3} mx={1}>
-          <NavMainButton to={PATH.GAMES_SCHEDULE} label="Terminarz" />
+          <NavMainButton to={PATH.GAMES_SCHEDULE} label="Mecze" />
           <NavExpandButton label="Grupy">
             {groups && groups.length > 0 && (
               <>
                 <NavMainButton to={PATH.SINGLES} label="Single" />
-                <NavMainButton to={PATH.DOUBLES} label="Deble" />
-                <NavMainButton to={PATH.MIXES} label="Mixty" />
               </>
             )}
             <NavMainButton to={PATH.MENAGE_REGISTRATION} label="Menager Zapisów" />
           </NavExpandButton>
-          <NavMainButton to={PATH.RANKINGS} label="Rankingi" />
+          <NavMainButton to={PATH.USERS} label="Zawodnicy" />
+          <NavMainButton to={PATH.GAMES_SCHEDULE} label="O turnieju" />
+          <NavMainButton to={PATH.GAMES_SCHEDULE} label="Ustawienia" />
         </Stack>
       </Stack>
       <Stack>
-        <Typography color={COLOR.LIGHT_GREY_TEXT} fontSize=".7rem" ml={3} mb={1}>
-          Zarządzanie kontami
-        </Typography>
-        <Divider />
         <Stack pt={1} mx={1} mb={3}>
-          <NavSecondaryButton to={PATH.USERS} label="Użytkownicy" />
           <NavSecondaryButton to={PATH.MY_ACCOUNT} label="Moje Konto" />
           <Typography
             className="navLink"

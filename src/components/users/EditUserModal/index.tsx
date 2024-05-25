@@ -13,22 +13,22 @@ import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import PersonalDataInputs from '../AddUserModal/PersonalDataInputs';
-import { useUpdateUserMutation } from '@/redux/api/userApi';
-import { User, UserWithoutId } from '@/redux/types/Player';
+import { useUpdatePlayerMutation } from '@/redux/api/playerApi';
+import { Player, PlayerWithoutId } from '@/redux/types/Player';
 
-const EditUserModal = ({ savedUser }: { savedUser: User }) => {
+const EditUserModal = ({ savedUser }: { savedUser: Player }) => {
   const [open, setOpen] = useState(false);
-  const methods = useForm<UserWithoutId>({
+  const methods = useForm<PlayerWithoutId>({
     defaultValues: savedUser
   });
-  const [updateUser] = useUpdateUserMutation();
+  const [updateUser] = useUpdatePlayerMutation();
 
   const handleCancel = () => {
     setOpen(false);
   };
 
-  const handleSave = (user: UserWithoutId) => {
-    updateUser({ id: savedUser._id, user: user }).then(() => {
+  const handleSave = (user: PlayerWithoutId) => {
+    updateUser({ id: savedUser._id, player: user }).then(() => {
       handleCancel();
     });
   };

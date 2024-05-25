@@ -2,8 +2,8 @@ import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import { TableRow, TableCell, Tooltip, Box, IconButton, Typography } from '@mui/material';
 import { useState } from 'react';
 
+import { useGetPlayerByIdQuery } from '@/redux/api/playerApi';
 import { useGetRegisterStatusQuery } from '@/redux/api/registerStatusApi';
-import { useGetUserByIdQuery } from '@/redux/api/userApi';
 import { Id, RegisterStatus } from '@/redux/types/common';
 
 interface PlayerRowProps {
@@ -14,8 +14,8 @@ interface PlayerRowProps {
 }
 
 const PlayerRow = ({ playerId, index, playerId2, onRemoveClick }: PlayerRowProps) => {
-  const { data: player } = useGetUserByIdQuery(playerId);
-  const { data: player2 } = useGetUserByIdQuery(playerId2 ?? '', { skip: !playerId2 });
+  const { data: player } = useGetPlayerByIdQuery(playerId);
+  const { data: player2 } = useGetPlayerByIdQuery(playerId2 ?? '', { skip: !playerId2 });
   const [actionsVisible, setActionsVisible] = useState(false);
   const { data: registerStatus } = useGetRegisterStatusQuery();
 

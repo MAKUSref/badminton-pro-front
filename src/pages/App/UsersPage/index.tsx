@@ -11,21 +11,21 @@ import {
   Typography
 } from '@mui/material';
 
-import AddUserModal from '@/components/users/AddUserModal';
-import UserRow from '@/components/users/UserRow';
-import { useGetAllUsersQuery } from '@/redux/api/userApi';
+import AddPlayerModal from '@/components/users/AddUserModal';
+import PlayerRow from '@/components/users/UserRow';
+import { useGetAllPlayersQuery } from '@/redux/api/playerApi';
 import COLOR from '@/themes/colors';
 
 //TODO: Loading
 
-const UsersPage = () => {
-  const { data: users } = useGetAllUsersQuery({});
+const PlayersPage = () => {
+  const { data: players } = useGetAllPlayersQuery();
 
   return (
     <Container>
       <Stack mt={5} mb={2} direction="row" justifyContent="space-between">
         <Typography variant="h6">Użytkownicy</Typography>
-        <AddUserModal />
+        <AddPlayerModal />
       </Stack>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }}>
@@ -38,11 +38,13 @@ const UsersPage = () => {
               <TableCell align="right"></TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>{users?.map((user) => <UserRow key={user._id} user={user} />)}</TableBody>
+          <TableBody>
+            {players?.map((player) => <PlayerRow key={player._id} user={player} />)}
+          </TableBody>
         </Table>
       </TableContainer>
     </Container>
   );
 };
 
-export default UsersPage;
+export default PlayersPage;

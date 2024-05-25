@@ -5,20 +5,20 @@ import { FormProvider, useForm } from 'react-hook-form';
 
 import PersonalDataInputs from './PersonalDataInputs';
 
-import { useAddUserMutation } from '@/redux/api/userApi';
-import { UserWithoutId } from '@/redux/types/Player';
+import { useAddPlayerMutation } from '@/redux/api/playerApi';
+import { PlayerWithoutId } from '@/redux/types/Player';
 
 const AddUserModal = () => {
   const [open, setOpen] = useState(false);
-  const methods = useForm<UserWithoutId>();
-  const [addUser] = useAddUserMutation();
+  const methods = useForm<PlayerWithoutId>();
+  const [addUser] = useAddPlayerMutation();
 
   const handleCancel = () => {
     setOpen(false);
     methods.reset();
   };
 
-  const handleSave = (user: UserWithoutId) => {
+  const handleSave = (user: PlayerWithoutId) => {
     addUser(user).then(() => {
       handleCancel();
     });
