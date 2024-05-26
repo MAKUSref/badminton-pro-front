@@ -8,18 +8,18 @@ import PersonalDataInputs from './PersonalDataInputs';
 import { useAddPlayerMutation } from '@/redux/api/playerApi';
 import { PlayerWithoutId } from '@/redux/types/Player';
 
-const AddUserModal = () => {
+const AddPlayerModal = () => {
   const [open, setOpen] = useState(false);
   const methods = useForm<PlayerWithoutId>();
-  const [addUser] = useAddPlayerMutation();
+  const [addPlayer] = useAddPlayerMutation();
 
   const handleCancel = () => {
     setOpen(false);
     methods.reset();
   };
 
-  const handleSave = (user: PlayerWithoutId) => {
-    addUser(user).then(() => {
+  const handleSave = (player: PlayerWithoutId) => {
+    addPlayer(player).then(() => {
       handleCancel();
     });
   };
@@ -54,4 +54,4 @@ const AddUserModal = () => {
   );
 };
 
-export default AddUserModal;
+export default AddPlayerModal;

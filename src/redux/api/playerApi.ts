@@ -43,6 +43,14 @@ export const playerApi = baseApi.injectEndpoints({
         return `/players/${id}`;
       },
       providesTags: ['player']
+    }),
+    addAllPlayers: builder.mutation<void, void>({
+      query: () => ({
+        url: `/players/addAll`,
+        method: 'POST',
+        body: {}
+      }),
+      invalidatesTags: ['player']
     })
   })
 });
@@ -53,5 +61,6 @@ export const {
   useGetAllPlayersAvailableForSingleQuery,
   useGetPlayerByIdQuery,
   useSuspendAccountByIdMutation,
-  useUpdatePlayerMutation
+  useUpdatePlayerMutation,
+  useAddAllPlayersMutation
 } = playerApi;

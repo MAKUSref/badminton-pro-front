@@ -7,7 +7,7 @@ import GamesSchedulePage from '@/pages/App/GamesSchedulePage';
 import MenageRegistration from '@/pages/App/groups/MenageRegistration';
 import SinglesPage from '@/pages/App/groups/SinglesPage';
 import RankingsPage from '@/pages/App/RankingsPage';
-import UsersPage from '@/pages/App/UsersPage';
+import UsersPage from '@/pages/App/PlayersPage';
 
 const router = createBrowserRouter([
   {

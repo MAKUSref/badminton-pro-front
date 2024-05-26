@@ -1,12 +1,12 @@
 import { TableRow, TableCell, Button, Tooltip, Box } from '@mui/material';
 import { useState } from 'react';
 
-import EditUserModal from '../EditUserModal';
+import EditPlayerModal from '../EditPlayerModal';
 import { Player } from '@/redux/types/Player';
 
 //TODO: Suspend User
 
-const UserRow = ({ user }: { user: Player }) => {
+const PlayerRow = ({ user }: { user: Player }) => {
   const [actionsVisible, setActionsVisible] = useState(false);
 
   return (
@@ -24,7 +24,7 @@ const UserRow = ({ user }: { user: Player }) => {
       <TableCell align="right">
         {actionsVisible ? (
           <>
-            <EditUserModal savedUser={user} />
+            <EditPlayerModal savedPlayer={user} />
             <Tooltip title="Zawieś konto" placement="top">
               <Button disabled color="error">
                 Zawieś
@@ -39,4 +39,4 @@ const UserRow = ({ user }: { user: Player }) => {
   );
 };
 
-export default UserRow;
+export default PlayerRow;

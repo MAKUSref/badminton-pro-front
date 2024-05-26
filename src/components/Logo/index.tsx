@@ -1,22 +1,17 @@
 import { Stack, Typography } from '@mui/material';
 
+import LOGO_IMG from '@/assets/logo.svg';
 import COLOR from '@/themes/colors';
 
-interface LogoProps {
-  accountType?: 'Admin' | 'Judge';
-}
-
-const Logo = ({ accountType = 'Admin' }: LogoProps) => {
+const Logo = () => {
   return (
-    <Stack direction="row" alignItems="end">
-      <Typography fontWeight="bold" fontSize="1rem">
-        Relax
+    <Stack direction="row" alignItems="center" mt={1}>
+      <img src={LOGO_IMG} alt="logo" />
+      <Typography fontWeight="bold" fontSize=".8rem" ml={1}>
+        BADMINTON
       </Typography>
-      <Typography fontWeight="bold" color={COLOR.PRIMARY} fontSize="1rem">
-        Bad
-      </Typography>
-      <Typography ml={1} fontSize="0.7rem" mb="2px">
-        {accountType}
+      <Typography fontWeight="bold" color={COLOR.PRIMARY} fontSize=".8rem">
+        PRO
       </Typography>
     </Stack>
   );
