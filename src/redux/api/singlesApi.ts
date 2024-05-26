@@ -25,7 +25,7 @@ export const singlesApi = baseApi.injectEndpoints({
         url: `/singles/${id}`,
         method: 'DELETE'
       }),
-      invalidatesTags: ['singles', 'user']
+      invalidatesTags: ['singles', 'player']
     }),
     addSingle: builder.mutation<Single, { single: SingleWithoutId }>({
       query: ({ single }) => ({
@@ -33,7 +33,15 @@ export const singlesApi = baseApi.injectEndpoints({
         method: 'POST',
         body: single
       }),
-      invalidatesTags: ['singles', 'user']
+      invalidatesTags: ['singles', 'player']
+    }),
+    addManySingles: builder.mutation<Single[], { singles: SingleWithoutId[] }>({
+      query: ({ singles }) => ({
+        url: `/singles/addMany`,
+        method: 'POST',
+        body: singles
+      }),
+      invalidatesTags: ['singles', 'player']
     })
   })
 });
@@ -42,5 +50,6 @@ export const {
   useAddSingleMutation,
   useGetSingleByIdQuery,
   useGetSinglesQuery,
-  useRemoveSingleByIdMutation
+  useRemoveSingleByIdMutation,
+  useAddManySinglesMutation
 } = singlesApi;

@@ -19,6 +19,7 @@ import AddPlayerModal from '@/components/players/AddPlayerModal';
 import PlayerRow from '@/components/players/PlayerRow';
 import { useAddAllPlayersMutation, useGetAllPlayersQuery } from '@/redux/api/playerApi';
 import COLOR from '@/themes/colors';
+import { toast } from 'react-toastify';
 
 //TODO: Loading
 
@@ -53,7 +54,9 @@ const PlayersPage = () => {
   const generatePlayers = () => {
     console.log('elo');
 
-    addAllPlayers();
+    addAllPlayers().then(() => {
+      toast.success('Dodano zadowników!');
+    });
   };
 
   return (
