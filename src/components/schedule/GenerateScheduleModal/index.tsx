@@ -6,11 +6,15 @@ import CourtCountInput from './CourtCountInput';
 import RangeTimeInput from './RangeTimeInput';
 import StartDateInput from './StartDateInput';
 
+import ScheduleTable from '../ScheduleTable';
 import { ScheduleForm, useGenerateScheduleMutation } from '@/redux/api/scheduleApi';
+import { ScheduleResponse } from '@/redux/types/Match';
 
 const GenerateScheduleModal = () => {
   const [open, setOpen] = useState(false);
   const methods = useForm<ScheduleForm>();
+  const [schedule, setSchedule] = useState<null | ScheduleResponse>(null);
+
   const [generateSchedule] = useGenerateScheduleMutation();
 
   const handleCancel = () => {
@@ -18,8 +22,15 @@ const GenerateScheduleModal = () => {
   };
 
   const handleSave = (scheduleForm: ScheduleForm) => {
-    generateSchedule(scheduleForm);
+    generateSchedule(scheduleForm)
+      .unwrap()
+      .then((sch) => {
+        setSchedule(sch);
+        console.log({ sch: sch.rounds });
+      });
   };
+
+  console.log({ data: schedule?.schedule.length });
 
   return (
     <>
@@ -48,6 +59,20 @@ const GenerateScheduleModal = () => {
           </form>
         </FormProvider>
       </Dialog>
+      {schedule && (
+        <Dialog onClose={handleCancel} open={open} fullScreen>
+          <DialogTitle fontSize="1.3rem" fontWeight="bold">
+            Stwórz terminarz
+          </DialogTitle>
+          <DialogContent>
+            <ScheduleTable schedule={schedule} />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleCancel}>Anuluj</Button>
+            <Button variant="contained">Zatwierdź</Button>
+          </DialogActions>
+        </Dialog>
+      )}
     </>
   );
 };

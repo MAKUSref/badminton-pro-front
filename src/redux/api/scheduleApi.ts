@@ -1,3 +1,4 @@
+import { ScheduleResponse } from '../types/Match';
 import { baseApi } from './baseApi';
 
 export interface ScheduleForm {
@@ -14,7 +15,7 @@ export const scheduleApi = baseApi.injectEndpoints({
     //   providesTags: ['registerStatus'],
     //   transformResponse: (res: { registerStatus: RegisterStatus }) => res.registerStatus
     // }),
-    generateSchedule: builder.mutation<unknown, ScheduleForm>({
+    generateSchedule: builder.mutation<ScheduleResponse, ScheduleForm>({
       query: (scheduleForm) => ({
         url: `/schedule`,
         body: scheduleForm,
