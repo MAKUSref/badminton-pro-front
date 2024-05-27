@@ -6,6 +6,11 @@ import { RouterProvider } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
+import '@fontsource/poppins/300.css';
+import '@fontsource/poppins/400.css';
+import '@fontsource/poppins/500.css';
+import '@fontsource/poppins/700.css';
+import '@fontsource/rubik-mono-one/400.css';
 
 import router from './routes/router';
 import AppThemeProvider from './themes/AppThemeProvider';
