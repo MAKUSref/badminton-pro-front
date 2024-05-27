@@ -6,6 +6,8 @@ export interface Match {
   court: number;
 }
 
+export interface MatchWithoutId extends Omit<Match, '_id'> {}
+
 export interface Participation {
   singleId: string;
   set1: number | null;
@@ -13,9 +15,21 @@ export interface Participation {
   set3: number | null;
 }
 
-export type Schedule = Match[][][];
+// export type Schedule = Match[][][];
 export interface ScheduleResponse {
-  schedule: Schedule;
-  courts: string;
+  schedule: Match[][][];
+  startTime: string;
+  endTime: string;
+  courtCount: number;
+  startDate: string;
+  rounds: number;
+}
+
+export interface ScheduleDetails {
+  schedule: string[][][];
+  startTime: string;
+  endTime: string;
+  courtCount: number;
+  startDate: string;
   rounds: number;
 }

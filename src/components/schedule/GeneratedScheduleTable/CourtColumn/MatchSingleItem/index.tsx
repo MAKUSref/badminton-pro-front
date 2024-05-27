@@ -1,21 +1,14 @@
 import { ButtonBase, Stack, Typography } from '@mui/material';
 
 import { useGetGroupByIdQuery } from '@/redux/api/groupApi';
-import { useGetMatchByIdQuery } from '@/redux/api/matchApi';
-import { useGetPlayerByIdQuery } from '@/redux/api/playerApi';
 import { useGetSingleByIdQuery } from '@/redux/api/singlesApi';
-import { Id } from '@/redux/types/common';
+import { useGetPlayerByIdQuery } from '@/redux/api/playerApi';
+import { Match } from '@/redux/types/Match';
 import { getGroupName } from '@/utility/getGroupName';
 
-interface MatchSingleItemProps {
-  matchId: Id;
-}
-
-const MatchSingleItem = ({ matchId }: MatchSingleItemProps) => {
-  const { data: match } = useGetMatchByIdQuery(matchId);
-
+const MatchSingleItem = (match: Match) => {
   const { data: single1 } = useGetSingleByIdQuery(
-    { id: match?.participation1?.singleId! },
+    { id: match?.participation1?.singleId },
     { skip: !match }
   );
 
@@ -23,7 +16,7 @@ const MatchSingleItem = ({ matchId }: MatchSingleItemProps) => {
     skip: !single1
   });
   const { data: single2 } = useGetSingleByIdQuery(
-    { id: match?.participation2?.singleId! },
+    { id: match?.participation2?.singleId },
     { skip: !match }
   );
   const { data: player2 } = useGetPlayerByIdQuery(single2?.playerId ?? '', { skip: !single2 });

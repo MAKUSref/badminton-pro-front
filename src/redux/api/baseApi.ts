@@ -7,6 +7,6 @@ export const baseApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: import.meta.env.VITE_API_URL
   }),
-  tagTypes: ['group', 'player', 'singles', 'registerStatus', 'tournament'],
+  tagTypes: ['group', 'player', 'singles', 'registerStatus', 'tournament', 'schedule', 'match'],
   endpoints: () => ({})
 });

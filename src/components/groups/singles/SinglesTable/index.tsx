@@ -1,12 +1,13 @@
 import { Stack, Typography } from '@mui/material';
 
+import AddSinglesModal from './AddSinglesModal';
+
 import PlayersTable from '@/components/groups/common/PlayersTable';
 import PlayerRow from '@/components/groups/common/PlayersTable/PlayerRow';
 import TableSkeleton from '@/components/skeletons/TableSkeleton';
 import { useGetSinglesQuery, useRemoveSingleByIdMutation } from '@/redux/api/singlesApi';
 import { Group } from '@/redux/types/Group';
 import { getGroupName } from '@/utility/getGroupName';
-import AddSinglesModal from './AddSinglesModal';
 
 interface PlayersTableProps {
   group: Group;

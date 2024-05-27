@@ -30,6 +30,7 @@ const AddSinglesModal = ({ groupId, gender }: AddSinglesModalProps) => {
 
   const handleCancel = () => {
     setOpen(false);
+    setPlayersIdList([]);
   };
 
   const handleSave = () => {
@@ -41,10 +42,12 @@ const AddSinglesModal = ({ groupId, gender }: AddSinglesModalProps) => {
       .unwrap()
       .then(() => {
         toast.success('Dodano zawodników do grupy!');
+        setPlayersIdList([]);
         handleCancel();
       })
       .catch((e) => {
         toast.error(e.data);
+        setPlayersIdList([]);
       });
   };
   return (

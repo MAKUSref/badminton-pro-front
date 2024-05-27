@@ -1,13 +1,18 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Stack } from '@mui/material';
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
 import CourtCountInput from './CourtCountInput';
 import RangeTimeInput from './RangeTimeInput';
 import StartDateInput from './StartDateInput';
 
-import ScheduleTable from '../ScheduleTable';
-import { ScheduleForm, useGenerateScheduleMutation } from '@/redux/api/scheduleApi';
+import GeneratedScheduleTable from '../GeneratedScheduleTable';
+import {
+  ScheduleForm,
+  useGenerateScheduleMutation,
+  useSaveScheduleMutation
+} from '@/redux/api/scheduleApi';
 import { ScheduleResponse } from '@/redux/types/Match';
 
 const GenerateScheduleModal = () => {
@@ -16,21 +21,30 @@ const GenerateScheduleModal = () => {
   const [schedule, setSchedule] = useState<null | ScheduleResponse>(null);
 
   const [generateSchedule] = useGenerateScheduleMutation();
+  const [saveSchedule] = useSaveScheduleMutation();
 
   const handleCancel = () => {
     setOpen(false);
   };
 
-  const handleSave = (scheduleForm: ScheduleForm) => {
+  const handleGenerate = (scheduleForm: ScheduleForm) => {
     generateSchedule(scheduleForm)
       .unwrap()
       .then((sch) => {
         setSchedule(sch);
-        console.log({ sch: sch.rounds });
       });
   };
 
-  console.log({ data: schedule?.schedule.length });
+  const handleSave = () => {
+    saveSchedule(schedule!)
+      .unwrap()
+      .then(() => {
+        handleCancel();
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
+  };
 
   return (
     <>
@@ -39,7 +53,7 @@ const GenerateScheduleModal = () => {
       </Button>
       <Dialog onClose={handleCancel} open={open}>
         <FormProvider {...methods}>
-          <form onSubmit={methods.handleSubmit(handleSave)}>
+          <form onSubmit={methods.handleSubmit(handleGenerate)}>
             <DialogTitle fontSize="1.3rem" fontWeight="bold">
               Stwórz terminarz
             </DialogTitle>
@@ -65,11 +79,13 @@ const GenerateScheduleModal = () => {
             Stwórz terminarz
           </DialogTitle>
           <DialogContent>
-            <ScheduleTable schedule={schedule} />
+            <GeneratedScheduleTable schedule={schedule} />
           </DialogContent>
           <DialogActions>
             <Button onClick={handleCancel}>Anuluj</Button>
-            <Button variant="contained">Zatwierdź</Button>
+            <Button variant="contained" onClick={handleSave}>
+              Zatwierdź
+            </Button>
           </DialogActions>
         </Dialog>
       )}
