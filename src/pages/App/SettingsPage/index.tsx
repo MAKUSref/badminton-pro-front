@@ -1,9 +1,12 @@
-import { Container, Typography } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
 
 const SettingsPage = () => {
   return (
     <Container>
-      <Typography>Settings Page</Typography>
+      <Typography variant="h2" my={2}>
+        Ustawienia Turnieju
+      </Typography>
+      <Box></Box>
     </Container>
   );
 };
