@@ -16,12 +16,10 @@ const GeneratedScheduleTable = ({ schedule }: GeneratedScheduleTableProps) => {
   // const turn = schedule[0];
   const [round, setRound] = useState(0);
 
-  console.log({ data: schedule.courtCount });
   const courts = useMemo(
     () => [...Array(parseInt(schedule.courtCount.toString())).keys()],
     [schedule]
   );
-  console.log(courts);
 
   const date = useMemo(
     () => schedule.schedule[round][0][0].startDataTime.split(' ')[0],

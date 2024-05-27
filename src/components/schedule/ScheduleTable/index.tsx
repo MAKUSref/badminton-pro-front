@@ -28,12 +28,15 @@ const ScheduleTable = ({ scheduleDetails }: ScheduleTableProps) => {
 
   return (
     <Stack>
-      <SelectRound
-        setRound={setRound}
-        roundsCount={scheduleDetails.rounds}
-        date={date ?? ''}
-        round={round}
-      />
+      {scheduleDetails.rounds > 1 && (
+        <SelectRound
+          setRound={setRound}
+          roundsCount={scheduleDetails.rounds}
+          date={date ?? ''}
+          round={round}
+        />
+      )}
+
       <Stack direction="row" gap={1} bgcolor={'#F9F9F9'} p={1} style={{ borderRadius: '10px' }}>
         <HoursColumn />
         {courts.map((court) => (

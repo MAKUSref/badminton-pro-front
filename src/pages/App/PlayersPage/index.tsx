@@ -13,13 +13,13 @@ import {
   Typography,
   styled
 } from '@mui/material';
+import { toast } from 'react-toastify';
 
 import ADD_IMAGE from '@/assets/add.png';
 import AddPlayerModal from '@/components/players/AddPlayerModal';
 import PlayerRow from '@/components/players/PlayerRow';
 import { useAddAllPlayersMutation, useGetAllPlayersQuery } from '@/redux/api/playerApi';
 import COLOR from '@/themes/colors';
-import { toast } from 'react-toastify';
 
 //TODO: Loading
 
@@ -52,8 +52,6 @@ const PlayersPage = () => {
   const [addAllPlayers] = useAddAllPlayersMutation();
 
   const generatePlayers = () => {
-    console.log('elo');
-
     addAllPlayers().then(() => {
       toast.success('Dodano zadowników!');
     });

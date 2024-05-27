@@ -21,12 +21,13 @@ const SelectRound = ({ date, roundsCount, setRound, round }: SelectRoundProps) =
     setRound(index);
     setAnchorEl(null);
   };
+
   return (
     <>
       <ButtonBase onClick={handleClick} sx={{ width: 'fit-content' }}>
         <Stack alignItems="start">
           <Stack direction="row" gap={4} alignItems="center">
-            <Typography variant="h5">Kolejka {round + 1}</Typography>
+            <Typography variant="h5">Dzień {round + 1}</Typography>
 
             <KeyboardArrowDownRoundedIcon fontSize="large" />
           </Stack>

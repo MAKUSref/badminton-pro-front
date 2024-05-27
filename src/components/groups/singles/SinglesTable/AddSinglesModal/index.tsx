@@ -34,8 +34,6 @@ const AddSinglesModal = ({ groupId, gender }: AddSinglesModalProps) => {
   };
 
   const handleSave = () => {
-    console.log(playersIdList.length);
-
     const singles: SingleWithoutId[] = playersIdList.map((playerId) => ({ playerId, groupId }));
 
     addManySingles({ singles })
