@@ -39,9 +39,8 @@ const SideNav = () => {
             )}
             <NavMainButton to={PATH.MENAGE_REGISTRATION} label="Menager Zapisów" />
           </NavExpandButton>
-          <NavMainButton to={PATH.USERS} label="Zawodnicy" />
-          <NavMainButton to={PATH.GAMES_SCHEDULE} label="O turnieju" />
-          <NavMainButton to={PATH.GAMES_SCHEDULE} label="Ustawienia" />
+          <NavMainButton to={PATH.PLAYERS} label="Zawodnicy" />
+          <NavMainButton to={PATH.SETTINGS} label="Ustawienia" />
         </Stack>
       </Stack>
       <Stack>

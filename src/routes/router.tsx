@@ -6,8 +6,9 @@ import App from '@/pages/App';
 import GamesSchedulePage from '@/pages/App/GamesSchedulePage';
 import MenageRegistration from '@/pages/App/groups/MenageRegistration';
 import SinglesPage from '@/pages/App/groups/SinglesPage';
+import PlayersPage from '@/pages/App/PlayersPage';
 import RankingsPage from '@/pages/App/RankingsPage';
-import UsersPage from '@/pages/App/PlayersPage';
+import SettingsPage from '@/pages/App/SettingsPage';
 
 const router = createBrowserRouter([
   {
@@ -31,8 +32,12 @@ const router = createBrowserRouter([
         element: <RankingsPage />
       },
       {
-        path: PATH.USERS,
-        element: <UsersPage />
+        path: PATH.PLAYERS,
+        element: <PlayersPage />
+      },
+      {
+        path: PATH.SETTINGS,
+        element: <SettingsPage />
       }
     ]
   }
