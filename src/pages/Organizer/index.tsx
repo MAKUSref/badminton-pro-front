@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 
 import SideNav from '@/components/SideNav';
 
-const App = () => {
+const Organizer = () => {
   return (
     <Stack flexDirection="row" boxSizing="border-box" height="100vh">
       <SideNav />
@@ -13,4 +13,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Organizer;

@@ -2,18 +2,23 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import PATH from './urls';
 
-import App from '@/pages/App';
-import GamesSchedulePage from '@/pages/App/GamesSchedulePage';
-import MenageRegistration from '@/pages/App/groups/MenageRegistration';
-import SinglesPage from '@/pages/App/groups/SinglesPage';
-import PlayersPage from '@/pages/App/PlayersPage';
-import RankingsPage from '@/pages/App/RankingsPage';
-import SettingsPage from '@/pages/App/SettingsPage';
+import Organizer from '@/pages/Organizer';
+import GamesSchedulePage from '@/pages/Organizer/GamesSchedulePage';
+import MenageRegistration from '@/pages/Organizer/groups/MenageRegistration';
+import SinglesPage from '@/pages/Organizer/groups/SinglesPage';
+import PlayersPage from '@/pages/Organizer/PlayersPage';
+import SettingsPage from '@/pages/Organizer/SettingsPage';
+import HomePage from '@/pages/Public/HomePage';
+import LoginPage from '@/pages/Public/LoginPage';
+import TournamentPage from '@/pages/Public/TournamentPage';
 
 const router = createBrowserRouter([
+  { path: PATH.HOME, element: <HomePage /> },
+  { path: PATH.TOURNAMENT, element: <TournamentPage /> },
+  { path: PATH.LOGIN, element: <LoginPage /> },
   {
-    path: PATH.APP,
-    element: <App />,
+    path: PATH.ORGANIZER,
+    element: <Organizer />,
     children: [
       {
         path: PATH.GAMES_SCHEDULE,
@@ -26,10 +31,6 @@ const router = createBrowserRouter([
       {
         path: PATH.MENAGE_REGISTRATION,
         element: <MenageRegistration />
-      },
-      {
-        path: PATH.RANKINGS,
-        element: <RankingsPage />
       },
       {
         path: PATH.PLAYERS,

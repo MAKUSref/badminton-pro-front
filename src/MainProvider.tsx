@@ -17,7 +17,7 @@ import AppThemeProvider from './themes/AppThemeProvider';
 
 dayjs.locale(localeData);
 
-const App = () => {
+const MainProvider = () => {
   return (
     <AppThemeProvider>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -39,4 +39,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default MainProvider;

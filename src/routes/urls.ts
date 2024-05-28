@@ -1,12 +1,14 @@
 module PATH_CREATE_LEAGUE {
-  export const APP = '/';
-  export const GAMES_SCHEDULE = '/games-schedule';
-  export const SINGLES = '/singles';
-  export const PLAYERS = '/players';
-  export const MENAGE_REGISTRATION = '/menage-registration';
-  export const MY_ACCOUNT = '/my-account';
-  export const RANKINGS = `/rankings`;
-  export const SETTINGS = `/settings`;
+  export const ORGANIZER = '/organizer';
+  export const TOURNAMENT = '/tournament-mikolajki';
+  export const HOME = '/';
+  export const LOGIN = '/login';
+  export const GAMES_SCHEDULE = '/organizer/games-schedule';
+  export const SINGLES = '/organizer/singles';
+  export const PLAYERS = '/organizer/players';
+  export const MENAGE_REGISTRATION = '/organizer/menage-registration';
+  export const MY_ACCOUNT = '/organizer/my-account';
+  export const SETTINGS = `/organizer/settings`;
 }
 
 export default PATH_CREATE_LEAGUE;
