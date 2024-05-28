@@ -6,12 +6,17 @@ import { useGetPlayerByIdQuery } from '@/redux/api/playerApi';
 import { useGetSingleByIdQuery } from '@/redux/api/singlesApi';
 import { Id } from '@/redux/types/common';
 import { getGroupName } from '@/utility/getGroupName';
+import { getScore } from '@/utility/getScore';
+import { useState } from 'react';
+import MatchDetailsModal from './MatchDetailsModal';
 
 interface MatchSingleItemProps {
   matchId: Id;
 }
 
 const MatchSingleItem = ({ matchId }: MatchSingleItemProps) => {
+  const [openDetails, setOpenDetails] = useState(false);
+
   const { data: match } = useGetMatchByIdQuery(matchId);
 
   const { data: single1 } = useGetSingleByIdQuery(
@@ -32,30 +37,49 @@ const MatchSingleItem = ({ matchId }: MatchSingleItemProps) => {
   });
 
   return (
-    <ButtonBase
-      sx={{
-        '&:hover': {
-          backgroundColor: '#f1f1f1'
-        }
-      }}>
-      <Stack width="200px" p={1}>
-        {group && (
-          <Typography sx={{ width: 'fit-content', alignSelf: 'center', fontSize: '0.5rem' }}>
-            {getGroupName(group.type, group.gender, group.category)}
-          </Typography>
-        )}
-        <Stack direction={'row'} justifyContent="space-between">
-          <Stack alignItems="center">
-            <Typography fontSize="0.7rem">{player1?.firstName}</Typography>
-            <Typography fontSize="0.7rem">{player1?.lastName}</Typography>
-          </Stack>
-          <Stack alignItems="center">
-            <Typography fontSize="0.7rem">{player2?.firstName}</Typography>
-            <Typography fontSize="0.7rem">{player2?.lastName}</Typography>
+    <>
+      <ButtonBase
+        onClick={() => setOpenDetails(true)}
+        sx={{
+          '&:hover': {
+            backgroundColor: '#f1f1f1'
+          }
+        }}>
+        <Stack width="200px" p={1}>
+          {group && (
+            <Typography sx={{ width: 'fit-content', alignSelf: 'center', fontSize: '0.5rem' }}>
+              {getGroupName(group.type, group.gender, group.category)}
+            </Typography>
+          )}
+          <Stack direction={'row'} justifyContent="space-between">
+            <Stack alignItems="center">
+              <Typography fontSize="0.7rem">{player1?.firstName}</Typography>
+              <Typography fontSize="0.7rem">{player1?.lastName}</Typography>
+              {match?.participation1 && (
+                <Typography>{getScore({ participation: match?.participation1 })}</Typography>
+              )}
+            </Stack>
+            <Stack alignItems="center">
+              <Typography fontSize="0.7rem">{player2?.firstName}</Typography>
+              <Typography fontSize="0.7rem">{player2?.lastName}</Typography>
+              {match?.participation1 && (
+                <Typography>{getScore({ participation: match?.participation1 })}</Typography>
+              )}
+            </Stack>
           </Stack>
         </Stack>
-      </Stack>
-    </ButtonBase>
+      </ButtonBase>
+      {match && group && player1 && player2 && (
+        <MatchDetailsModal
+          match={match!}
+          group={group!}
+          open={openDetails}
+          setOpen={setOpenDetails}
+          player1={player1!}
+          player2={player2!}
+        />
+      )}
+    </>
   );
 };
 
