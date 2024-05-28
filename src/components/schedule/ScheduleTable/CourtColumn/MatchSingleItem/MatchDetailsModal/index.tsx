@@ -1,6 +1,7 @@
-import { Dialog, DialogTitle, DialogContent, Stack, Typography } from '@mui/material';
-import { Dispatch, SetStateAction } from 'react';
+import { Dialog, DialogTitle, DialogContent, Stack, Typography, Button } from '@mui/material';
+import { Dispatch, SetStateAction, useState } from 'react';
 
+import EditPointsTable from './EditPointsTable';
 import PointsTable from './PointsTable';
 
 import { Group } from '@/redux/types/Group';
@@ -38,6 +39,8 @@ const MatchDetailsModal = ({
   open,
   group
 }: MatchDetailsModalProps) => {
+  const [visibleEditForm, setVisibleEditForm] = useState(false);
+
   return (
     <>
       <Dialog onClose={() => setOpen(false)} open={open}>
@@ -54,7 +57,17 @@ const MatchDetailsModal = ({
             <PlayerScore participation={match.participation1} player={player1} />
             <PlayerScore participation={match.participation2} player={player2} />
           </Stack>
-          <PointsTable match={match} />
+
+          {visibleEditForm ? (
+            <EditPointsTable match={match} setVisible={setVisibleEditForm} />
+          ) : (
+            <>
+              <Stack flexDirection="row" justifyContent="flex-end" mb={1}>
+                <Button onClick={() => setVisibleEditForm(true)}>Edytuj punkty</Button>
+              </Stack>
+              <PointsTable match={match} />
+            </>
+          )}
         </DialogContent>
       </Dialog>
     </>

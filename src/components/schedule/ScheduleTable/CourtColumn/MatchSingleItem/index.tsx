@@ -1,4 +1,7 @@
 import { ButtonBase, Stack, Typography } from '@mui/material';
+import { useState } from 'react';
+
+import MatchDetailsModal from './MatchDetailsModal';
 
 import { useGetGroupByIdQuery } from '@/redux/api/groupApi';
 import { useGetMatchByIdQuery } from '@/redux/api/matchApi';
@@ -7,8 +10,6 @@ import { useGetSingleByIdQuery } from '@/redux/api/singlesApi';
 import { Id } from '@/redux/types/common';
 import { getGroupName } from '@/utility/getGroupName';
 import { getScore } from '@/utility/getScore';
-import { useState } from 'react';
-import MatchDetailsModal from './MatchDetailsModal';
 
 interface MatchSingleItemProps {
   matchId: Id;
@@ -63,7 +64,7 @@ const MatchSingleItem = ({ matchId }: MatchSingleItemProps) => {
               <Typography fontSize="0.7rem">{player2?.firstName}</Typography>
               <Typography fontSize="0.7rem">{player2?.lastName}</Typography>
               {match?.participation1 && (
-                <Typography>{getScore({ participation: match?.participation1 })}</Typography>
+                <Typography>{getScore({ participation: match?.participation2 })}</Typography>
               )}
             </Stack>
           </Stack>
