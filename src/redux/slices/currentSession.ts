@@ -9,6 +9,7 @@ export type CreateLeagueStep =
 
 export interface CurrentSessionContext {
   createLeagueStep: CreateLeagueStep;
+  sessionToken?: string;
 }
 
 const initialState: CurrentSessionContext = {
@@ -21,9 +22,15 @@ const currentSessionSlice = createSlice({
   reducers: {
     setCreateLeagueStep(state, action: PayloadAction<CreateLeagueStep>) {
       state.createLeagueStep = action.payload;
+    },
+    setToken(state, action: PayloadAction<string>) {
+      state.sessionToken = action.payload;
+    },
+    logout(state) {
+      state.sessionToken = undefined;
     }
   }
 });
 
-export const { setCreateLeagueStep } = currentSessionSlice.actions;
+export const { setCreateLeagueStep, setToken, logout } = currentSessionSlice.actions;
 export default currentSessionSlice.reducer;

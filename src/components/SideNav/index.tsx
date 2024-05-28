@@ -1,5 +1,7 @@
 import './style.scss';
 import { Box, Divider, Stack, Typography } from '@mui/material';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import NavExpandButton from './NavExpandButton';
 import NavMainButton from './NavMainButton';
@@ -8,12 +10,21 @@ import NavSecondaryButton from './NavSecondaryButton';
 import Logo from '../Logo';
 import { useGetAllGroupsQuery } from '@/redux/api/groupApi';
 import { useGetMyTournamentQuery } from '@/redux/api/tournamentApi';
+import { logout } from '@/redux/slices/currentSession';
 import PATH from '@/routes/urls';
+import PATH_CREATE_LEAGUE from '@/routes/urls';
 import COLOR from '@/themes/colors';
 
 const SideNav = () => {
   const { data: groups } = useGetAllGroupsQuery({});
   const { data: tournament } = useGetMyTournamentQuery();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate(PATH_CREATE_LEAGUE.HOME);
+  };
 
   return (
     <Stack
@@ -47,11 +58,13 @@ const SideNav = () => {
         <Stack pt={1} mx={1} mb={3}>
           <NavSecondaryButton to={PATH.MY_ACCOUNT} label="Moje Konto" />
           <Typography
+            sx={{ cursor: 'pointer' }}
             className="navLink"
             style={{
               color: COLOR.LIGHT_GREY_TEXT,
               padding: '10px 20px'
-            }}>
+            }}
+            onClick={handleLogout}>
             Wyloguj się
           </Typography>
         </Stack>
