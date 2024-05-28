@@ -36,6 +36,9 @@ const PlayersTable = ({ children, isEmpty }: PlayersTableProps) => {
             <TableCell>Lp</TableCell>
             <TableCell>Imię i nazwisko</TableCell>
             <TableCell align="right"></TableCell>
+            <TableCell align="right"></TableCell>
+            <TableCell align="right"></TableCell>
+            <TableCell align="right"></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>{children}</TableBody>

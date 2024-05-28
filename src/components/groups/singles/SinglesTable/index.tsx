@@ -33,7 +33,7 @@ const SinglesTable = ({ group }: PlayersTableProps) => {
           {singles?.map((single, index) => (
             <PlayerRow
               key={single._id}
-              playerId={single.playerId}
+              single={single}
               index={index + 1}
               onRemoveClick={() => {
                 remove({ id: single._id });

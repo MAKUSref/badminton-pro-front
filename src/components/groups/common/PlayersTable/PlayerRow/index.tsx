@@ -4,20 +4,23 @@ import { useState } from 'react';
 
 import { useGetPlayerByIdQuery } from '@/redux/api/playerApi';
 import { useGetRegisterStatusQuery } from '@/redux/api/registerStatusApi';
-import { Id, RegisterStatus } from '@/redux/types/common';
+import { useGetSingleScoreByIdQuery } from '@/redux/api/singlesApi';
+import { RegisterStatus } from '@/redux/types/common';
+import { Single } from '@/redux/types/Group';
 
 interface PlayerRowProps {
   index: number;
-  playerId: Id;
-  playerId2?: Id;
+  single: Single;
   onRemoveClick: () => void;
 }
 
-const PlayerRow = ({ playerId, index, playerId2, onRemoveClick }: PlayerRowProps) => {
+const PlayerRow = ({ single: { playerId, _id }, index, onRemoveClick }: PlayerRowProps) => {
   const { data: player } = useGetPlayerByIdQuery(playerId);
-  const { data: player2 } = useGetPlayerByIdQuery(playerId2 ?? '', { skip: !playerId2 });
   const [actionsVisible, setActionsVisible] = useState(false);
   const { data: registerStatus } = useGetRegisterStatusQuery();
+  const { data: score } = useGetSingleScoreByIdQuery({ id: _id });
+
+  console.log(_id);
 
   return (
     <TableRow
@@ -33,9 +36,15 @@ const PlayerRow = ({ playerId, index, playerId2, onRemoveClick }: PlayerRowProps
         <Typography>
           {player?.firstName} {player?.lastName}
         </Typography>
-        <Typography>
-          {player2?.firstName} {player2?.lastName}
-        </Typography>
+      </TableCell>
+      <TableCell component="th" scope="row">
+        <Typography>{score?.allMatches}</Typography>
+      </TableCell>
+      <TableCell component="th" scope="row">
+        <Typography>{score?.playedMatches}</Typography>
+      </TableCell>
+      <TableCell component="th" scope="row">
+        <Typography fontWeight="bold">{score?.score}</Typography>
       </TableCell>
       <TableCell align="right">
         {actionsVisible && registerStatus === RegisterStatus.ADMIN_REGISTER ? (

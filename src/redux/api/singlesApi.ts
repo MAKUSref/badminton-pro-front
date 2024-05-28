@@ -13,6 +13,16 @@ export const singlesApi = baseApi.injectEndpoints({
       },
       providesTags: ['singles']
     }),
+    getSingleScoreById: builder.query<
+      { allMatches: number; playedMatches: number; score: number },
+      { id: Id }
+    >({
+      query: ({ id }) => {
+        if (!id) throw new Error(GROUP_NULL_ERR);
+        return `/singles/${id}/score`;
+      },
+      providesTags: ['singles', 'match', 'schedule']
+    }),
     getSingles: builder.query<Single[], { groupId?: Id }>({
       query: ({ groupId }) => {
         if (!groupId) throw new Error(GROUP_NULL_ERR);
@@ -51,5 +61,6 @@ export const {
   useGetSingleByIdQuery,
   useGetSinglesQuery,
   useRemoveSingleByIdMutation,
-  useAddManySinglesMutation
+  useAddManySinglesMutation,
+  useGetSingleScoreByIdQuery
 } = singlesApi;
