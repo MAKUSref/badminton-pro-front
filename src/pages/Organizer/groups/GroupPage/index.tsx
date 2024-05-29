@@ -1,44 +1,41 @@
-import { Container, Grid, Stack, Typography } from '@mui/material';
-import { PropsWithChildren } from 'react';
+import { Container, Grid, Typography } from '@mui/material';
+import { PropsWithChildren, useMemo } from 'react';
 
-import { GroupType } from '@/redux/types/common';
-import COLOR from '@/themes/colors';
-import { getGroupName } from '@/utility/getGroupName';
+import NoGroups from '@/components/groups/NoGroups';
+import { GroupType, TournamentStatus } from '@/redux/types/common';
+import { useAppSelector } from '@/redux/store';
 
 interface AddPlayerToGroupModalProps extends PropsWithChildren {
   groupType: GroupType;
   isEmpty: boolean;
 }
 
-const EmptyGroups = () => {
-  return (
-    <Stack alignItems="center" justifyContent="center" height="100%">
-      <Typography variant="h2" mb={1}>
-        Nie utworzono grup
-      </Typography>
-      <Typography color={COLOR.LIGHT_GREY_TEXT} mb={5}>
-        W obecnie trwającej lidze nie zostały utworzone grupy w tym typie gry
-      </Typography>
-    </Stack>
+const GroupPage = ({ children, isEmpty }: AddPlayerToGroupModalProps) => {
+  const isLogged = useAppSelector((state) => !!state.currentSession.sessionToken);
+  const status = useAppSelector((state) => state.currentSession.tournamentStatus);
+  const displayedInfo = useMemo(
+    () => status === TournamentStatus.ADDING_PLAYERS_GROUPS && isLogged,
+    [status, isLogged]
   );
-};
 
-const GroupPage = ({ groupType, children, isEmpty }: AddPlayerToGroupModalProps) => {
   if (isEmpty) {
     return (
       <Container>
-        <EmptyGroups />
+        <NoGroups />
       </Container>
     );
   }
 
   return (
-    <Container sx={{ pb: 10 }}>
-      <Stack direction="row" justifyContent="space-between" alignItems="flex-end">
-        <Typography variant="h2" mt={2}>
-          {getGroupName(groupType)}
+    <Container sx={{ pb: 10, mt: 5 }}>
+      <Typography variant="h2" mt={2}>
+        Single
+      </Typography>
+      {displayedInfo && (
+        <Typography mt={1} color={'red'} fontSize={'.6rem'}>
+          Musisz najpierw zatwierdzić zawodników aby przypisac ich do grup
         </Typography>
-      </Stack>
+      )}
       <Grid container>{children}</Grid>
     </Container>
   );

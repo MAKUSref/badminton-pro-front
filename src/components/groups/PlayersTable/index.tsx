@@ -9,11 +9,12 @@ import {
   Stack,
   Typography
 } from '@mui/material';
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, useMemo } from 'react';
 
 import ADD_IMAGE from '@/assets/add.png';
-import COLOR from '@/themes/colors';
 import { useAppSelector } from '@/redux/store';
+import COLOR from '@/themes/colors';
+import { TournamentStatus } from '@/redux/types/common';
 
 interface PlayersTableProps extends PropsWithChildren {
   isEmpty: boolean;
@@ -30,6 +31,8 @@ const NoPlayers = () => {
 
 const PlayersTable = ({ children, isEmpty }: PlayersTableProps) => {
   const isLogged = useAppSelector((state) => !!state.currentSession.sessionToken);
+  const status = useAppSelector((state) => state.currentSession.tournamentStatus);
+  const active = useMemo(() => status === TournamentStatus.ADDING_PLAYERS_GROUPS, [status]);
   return (
     <TableContainer component={Paper}>
       <Table size="small">
@@ -39,7 +42,7 @@ const PlayersTable = ({ children, isEmpty }: PlayersTableProps) => {
             <TableCell>Imię i nazwisko</TableCell>
             <TableCell align="right"></TableCell>
             <TableCell align="right"></TableCell>
-            {isLogged && <TableCell align="right"></TableCell>}
+            {isLogged && active && <TableCell align="right"></TableCell>}
           </TableRow>
         </TableHead>
         <TableBody>{children}</TableBody>

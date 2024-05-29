@@ -5,10 +5,9 @@ export type Id = string | null;
 
 export type Role = 'ADMIN' | 'JUDGE' | 'PLAYER';
 export type RecordType = 'doubles' | 'singles';
-export enum RegisterStatus {
-  NO_GROUPS = 'NO_GROUPS',
-  USERS_REGISTER = 'USERS_REGISTER',
-  ADMIN_REGISTER = 'ADMIN_REGISTER',
+export enum TournamentStatus {
+  ADDING_PLAYERS_GROUPS = 'ADDING_PLAYERS_GROUPS',
+  REGISTER_PLAYERS = 'REGISTER_PLAYERS',
   CLOSED = 'CLOSED'
 }
 export const DATE_FORMAT = 'DD-MM-YYYY';

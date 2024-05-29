@@ -3,12 +3,10 @@ import { Box, Divider, Stack, Typography } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import NavExpandButton from './NavExpandButton';
 import NavMainButton from './NavMainButton';
 import NavSecondaryButton from './NavSecondaryButton';
 
 import Logo from '../Logo';
-import { useGetAllGroupsQuery } from '@/redux/api/groupApi';
 import { useGetMyTournamentQuery } from '@/redux/api/tournamentApi';
 import { logout } from '@/redux/slices/currentSession';
 import PATH from '@/routes/urls';
@@ -16,7 +14,6 @@ import PATH_CREATE_LEAGUE from '@/routes/urls';
 import COLOR from '@/themes/colors';
 
 const SideNav = () => {
-  const { data: groups } = useGetAllGroupsQuery({});
   const { data: tournament } = useGetMyTournamentQuery();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -42,14 +39,7 @@ const SideNav = () => {
         <Divider />
         <Stack paddingTop={3} mx={1}>
           <NavMainButton to={PATH.GAMES_SCHEDULE} label="Mecze" />
-          <NavExpandButton label="Grupy">
-            {groups && groups.length > 0 && (
-              <>
-                <NavMainButton to={PATH.SINGLES} label="Single" />
-              </>
-            )}
-            <NavMainButton to={PATH.MENAGE_REGISTRATION} label="Menager Zapisów" />
-          </NavExpandButton>
+          <NavMainButton to={PATH.SINGLES} label="Single" />
           <NavMainButton to={PATH.PLAYERS} label="Zawodnicy" />
           <NavMainButton to={PATH.SETTINGS} label="Ustawienia" />
         </Stack>

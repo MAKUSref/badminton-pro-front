@@ -1,7 +1,7 @@
 import { Grid } from '@mui/material';
 
 import GroupPage from '../GroupPage';
-import SinglesTable from '@/components/groups/singles/SinglesTable';
+import SinglesTable from '@/components/groups/SinglesTable';
 import { useGetAllGroupsQuery } from '@/redux/api/groupApi';
 
 const SinglesPage = () => {

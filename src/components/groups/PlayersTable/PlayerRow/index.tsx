@@ -5,9 +5,9 @@ import { useState } from 'react';
 import { useGetPlayerByIdQuery } from '@/redux/api/playerApi';
 import { useGetRegisterStatusQuery } from '@/redux/api/registerStatusApi';
 import { useGetSingleScoreByIdQuery } from '@/redux/api/singlesApi';
-import { RegisterStatus } from '@/redux/types/common';
-import { Single } from '@/redux/types/Group';
 import { useAppSelector } from '@/redux/store';
+import { TournamentStatus } from '@/redux/types/common';
+import { Single } from '@/redux/types/Group';
 
 interface PlayerRowProps {
   index: number;
@@ -47,7 +47,7 @@ const PlayerRow = ({ single: { playerId, _id }, index, onRemoveClick }: PlayerRo
       </TableCell>
       {isLogged && (
         <TableCell align="right">
-          {actionsVisible && registerStatus === RegisterStatus.ADMIN_REGISTER ? (
+          {actionsVisible && registerStatus === TournamentStatus.REGISTER_PLAYERS ? (
             <Tooltip title="Usuń z grupy" placement="top">
               <IconButton onClick={onRemoveClick}>
                 <DeleteRoundedIcon />

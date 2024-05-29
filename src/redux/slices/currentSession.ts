@@ -1,27 +1,23 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { TournamentStatus } from '../types/common';
 
 export type ThemeMode = 'light' | 'dark';
-export type CreateLeagueStep =
-  | 'CREATE_LEAGUE'
-  | 'CREATE_GROUPS'
-  | 'START_REGISTRATION'
-  | 'SUBMIT_PLAYERS';
 
 export interface CurrentSessionContext {
-  createLeagueStep: CreateLeagueStep;
+  tournamentStatus: TournamentStatus;
   sessionToken?: string;
 }
 
 const initialState: CurrentSessionContext = {
-  createLeagueStep: 'CREATE_LEAGUE'
+  tournamentStatus: TournamentStatus.ADDING_PLAYERS_GROUPS
 };
 
 const currentSessionSlice = createSlice({
   name: 'currentSession',
   initialState,
   reducers: {
-    setCreateLeagueStep(state, action: PayloadAction<CreateLeagueStep>) {
-      state.createLeagueStep = action.payload;
+    setTournamentStatus(state, action: PayloadAction<TournamentStatus>) {
+      state.tournamentStatus = action.payload;
     },
     setToken(state, action: PayloadAction<string>) {
       state.sessionToken = action.payload;
@@ -32,5 +28,5 @@ const currentSessionSlice = createSlice({
   }
 });
 
-export const { setCreateLeagueStep, setToken, logout } = currentSessionSlice.actions;
+export const { setTournamentStatus, setToken, logout } = currentSessionSlice.actions;
 export default currentSessionSlice.reducer;

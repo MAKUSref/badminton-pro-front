@@ -27,8 +27,9 @@ const GamesSchedulePage = () => {
           <Typography variant="h2" mb={1}>
             Utwórz terminarz meczy do turnieju
           </Typography>
-          <Typography color={COLOR.LIGHT_GREY_TEXT} mb={5}>
+          <Typography color={COLOR.LIGHT_GREY_TEXT} mb={3} mt={1}>
             Wygeneruj terminarz meczy, jeżeli będzie ci odpowiadał zatwierdź go!
+            <br /> Pamiętaj, że jeżeli zapiszesz terminarz, nie będziesz mógł zmienić grup.
           </Typography>
           <GenerateScheduleModal />
         </Stack>

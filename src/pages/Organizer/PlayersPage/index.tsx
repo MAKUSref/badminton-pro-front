@@ -13,12 +13,16 @@ import {
   Typography,
   styled
 } from '@mui/material';
+import { useMemo } from 'react';
 import { toast } from 'react-toastify';
 
 import ADD_IMAGE from '@/assets/add.png';
 import AddPlayerModal from '@/components/players/AddPlayerModal';
 import PlayerRow from '@/components/players/PlayerRow';
 import { useAddAllPlayersMutation, useGetAllPlayersQuery } from '@/redux/api/playerApi';
+import { setTournamentStatus } from '@/redux/slices/currentSession';
+import { useAppDispatch, useAppSelector } from '@/redux/store';
+import { TournamentStatus } from '@/redux/types/common';
 import COLOR from '@/themes/colors';
 
 //TODO: Loading
@@ -50,6 +54,8 @@ const NoPlayers = () => {
 const PlayersPage = () => {
   const { data: players } = useGetAllPlayersQuery();
   const [addAllPlayers] = useAddAllPlayersMutation();
+  const dispatch = useAppDispatch();
+  const status = useAppSelector((state) => state.currentSession.tournamentStatus);
 
   const generatePlayers = () => {
     addAllPlayers().then(() => {
@@ -57,12 +63,23 @@ const PlayersPage = () => {
     });
   };
 
+  //TODO: Open dialog to confirm
+  const confirmPlayers = () => {
+    dispatch(setTournamentStatus(TournamentStatus.REGISTER_PLAYERS));
+  };
+
+  const disabled = useMemo(() => status !== TournamentStatus.ADDING_PLAYERS_GROUPS, [status]);
+
   return (
     <Container>
       <Stack mt={5} mb={2} direction="row" justifyContent="space-between">
         <Typography variant="h6">Zawodnicy</Typography>
         <Stack flexDirection="row" gap={1}>
+          <Button variant="outlined" onClick={confirmPlayers} disabled={disabled}>
+            Zatwierdź
+          </Button>
           <Button
+            disabled={disabled}
             variant="contained"
             tabIndex={-1}
             role={undefined}

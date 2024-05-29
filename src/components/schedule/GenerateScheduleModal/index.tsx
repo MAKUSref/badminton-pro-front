@@ -5,7 +5,8 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  Stack
+  Stack,
+  Typography
 } from '@mui/material';
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -22,15 +23,20 @@ import {
   useSaveScheduleMutation
 } from '@/redux/api/scheduleApi';
 import { ScheduleResponse } from '@/redux/types/Match';
+import { useAppDispatch, useAppSelector } from '@/redux/store';
+import { TournamentStatus } from '@/redux/types/common';
+import { setTournamentStatus } from '@/redux/slices/currentSession';
 
 const GenerateScheduleModal = () => {
   const [open, setOpen] = useState(false);
   const [openSchedule, setOpenSchedule] = useState(false);
   const methods = useForm<ScheduleForm>();
   const [schedule, setSchedule] = useState<null | ScheduleResponse>(null);
+  const status = useAppSelector((state) => state.currentSession.tournamentStatus);
 
   const [generateSchedule, { isLoading: isGenerateLoading }] = useGenerateScheduleMutation();
   const [saveSchedule, { isLoading: isSaveLoading }] = useSaveScheduleMutation();
+  const dispatch = useAppDispatch();
 
   const handleCancel = () => {
     methods.reset();
@@ -62,6 +68,7 @@ const GenerateScheduleModal = () => {
       .then(() => {
         setOpenSchedule(false);
         setOpen(false);
+        dispatch(setTournamentStatus(TournamentStatus.CLOSED));
       })
       .catch((error) => {
         toast.error(error);
@@ -70,9 +77,17 @@ const GenerateScheduleModal = () => {
 
   return (
     <>
-      <Button onClick={() => setOpen(true)} variant="contained">
+      <Button
+        onClick={() => setOpen(true)}
+        variant="contained"
+        disabled={status !== TournamentStatus.REGISTER_PLAYERS}>
         Stwórz terminarz
       </Button>
+      {status !== TournamentStatus.REGISTER_PLAYERS && (
+        <Typography mt={1} color={'red'} fontSize={'.6rem'}>
+          Musisz najpierw zatwierdzić zawodników oraz grupy
+        </Typography>
+      )}
       <Dialog onClose={handleCancel} open={open}>
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(handleGenerate)}>
@@ -93,7 +108,7 @@ const GenerateScheduleModal = () => {
                 <>
                   <Button onClick={handleCancel}>Anuluj</Button>
                   <Button variant="contained" type="submit">
-                    Zatwierdź
+                    Wygeneruj
                   </Button>
                 </>
               )}

@@ -4,7 +4,6 @@ import PATH from './urls';
 
 import Organizer from '@/pages/Organizer';
 import GamesSchedulePage from '@/pages/Organizer/GamesSchedulePage';
-import MenageRegistration from '@/pages/Organizer/groups/MenageRegistration';
 import SinglesPage from '@/pages/Organizer/groups/SinglesPage';
 import PlayersPage from '@/pages/Organizer/PlayersPage';
 import SettingsPage from '@/pages/Organizer/SettingsPage';
@@ -27,10 +26,6 @@ const router = createBrowserRouter([
       {
         path: PATH.SINGLES,
         element: <SinglesPage />
-      },
-      {
-        path: PATH.MENAGE_REGISTRATION,
-        element: <MenageRegistration />
       },
       {
         path: PATH.PLAYERS,

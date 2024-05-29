@@ -1,15 +1,15 @@
 import { baseApi } from './baseApi';
 
-import { RegisterStatus } from '../types/common';
+import { TournamentStatus } from '../types/common';
 
 export const registerStatusApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    getRegisterStatus: builder.query<RegisterStatus, void>({
+    getRegisterStatus: builder.query<TournamentStatus, void>({
       query: () => `/registerStatus`,
       providesTags: ['registerStatus'],
-      transformResponse: (res: { registerStatus: RegisterStatus }) => res.registerStatus
+      transformResponse: (res: { registerStatus: TournamentStatus }) => res.registerStatus
     }),
-    setRegisterStatus: builder.mutation<{ registerStatus: RegisterStatus }, RegisterStatus>({
+    setRegisterStatus: builder.mutation<{ registerStatus: TournamentStatus }, TournamentStatus>({
       query: (registerStatus) => ({
         url: `/registerStatus`,
         body: { registerStatus },

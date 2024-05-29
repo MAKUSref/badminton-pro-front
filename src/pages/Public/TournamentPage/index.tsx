@@ -3,9 +3,9 @@ import { useState, SyntheticEvent } from 'react';
 
 import CLUB_LOGO_IMG from '@/assets/club-logo.png';
 import ScheduleTable from '@/components/schedule/ScheduleTable';
+import SinglesPage from '@/pages/Organizer/groups/SinglesPage';
 import { useGetScheduleQuery } from '@/redux/api/scheduleApi';
 import { useGetMyTournamentQuery } from '@/redux/api/tournamentApi';
-import SinglesPage from '@/pages/Organizer/groups/SinglesPage';
 
 const ScheduleContainer = () => {
   const { data: scheduleDetails, isLoading } = useGetScheduleQuery();

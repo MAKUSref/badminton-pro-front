@@ -1,17 +1,21 @@
 import PersonAddAltRoundedIcon from '@mui/icons-material/PersonAddAltRounded';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Stack } from '@mui/material';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import PersonalDataInputs from './PersonalDataInputs';
 
 import { useAddPlayerMutation } from '@/redux/api/playerApi';
+import { useAppSelector } from '@/redux/store';
+import { TournamentStatus } from '@/redux/types/common';
 import { PlayerWithoutId } from '@/redux/types/Player';
 
 const AddPlayerModal = () => {
   const [open, setOpen] = useState(false);
   const methods = useForm<PlayerWithoutId>();
   const [addPlayer] = useAddPlayerMutation();
+  const status = useAppSelector((state) => state.currentSession.tournamentStatus);
+  const disabled = useMemo(() => status !== TournamentStatus.ADDING_PLAYERS_GROUPS, [status]);
 
   const handleCancel = () => {
     setOpen(false);
@@ -28,6 +32,7 @@ const AddPlayerModal = () => {
     <>
       <Button
         variant="contained"
+        disabled={disabled}
         onClick={() => setOpen(true)}
         startIcon={<PersonAddAltRoundedIcon />}>
         Dodaj użytkownika

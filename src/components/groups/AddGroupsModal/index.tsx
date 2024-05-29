@@ -35,7 +35,7 @@ const AddGroupsModal = ({ disabled = false }: { disabled?: boolean }) => {
   return (
     <>
       <Button variant="contained" onClick={() => setOpen(true)} disabled={disabled}>
-        Utwórz kategorie
+        Utwórz grupy
       </Button>
       <Dialog onClose={() => setOpen(false)} open={open}>
         <DialogTitle>Stwórz grupy</DialogTitle>
