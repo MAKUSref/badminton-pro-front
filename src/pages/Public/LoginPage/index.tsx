@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 
-import INTRO_BG from '@/assets/intro-bg.png';
+import INTRO_BG from '@/assets/intro-bg.svg';
 import Logo from '@/components/Logo';
 import { setToken } from '@/redux/slices/currentSession';
 import PATH_CREATE_LEAGUE from '@/routes/urls';
@@ -25,13 +25,13 @@ const LoginPage = () => {
   const onSubmit = ({ email, password }: LoginSchema) => {
     if (email === LOGIN && password === PASSWORD) {
       dispatch(setToken('token'));
-      navigate(PATH_CREATE_LEAGUE.ORGANIZER);
+      navigate(PATH_CREATE_LEAGUE.PLAYERS);
     }
   };
 
   return (
     <>
-      <img src={INTRO_BG} style={{ position: 'absolute', top: 0, right: 0 }} />
+      <img src={INTRO_BG} style={{ position: 'absolute', top: 0, right: 0, width: 600 }} />
       <Box position="absolute" zIndex={11} px={4} py={1}>
         <NavLink to={PATH_CREATE_LEAGUE.HOME} style={{ textDecoration: 'none', color: 'inherit' }}>
           <Logo />
@@ -46,8 +46,8 @@ const LoginPage = () => {
         <Stack
           maxWidth="600px"
           bgcolor="white"
-          px={2}
-          py={4}
+          px={7}
+          py={7}
           borderRadius={2}
           border={1}
           borderColor={COLOR.GREY_BORDER}>

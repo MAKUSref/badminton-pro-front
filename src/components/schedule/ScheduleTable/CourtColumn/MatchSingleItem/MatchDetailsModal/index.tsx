@@ -9,6 +9,7 @@ import { Match, Participation } from '@/redux/types/Match';
 import { Player } from '@/redux/types/Player';
 import { getGroupName } from '@/utility/getGroupName';
 import { getScore } from '@/utility/getScore';
+import { useAppSelector } from '@/redux/store';
 
 interface MatchDetailsModalProps {
   match: Match;
@@ -17,7 +18,6 @@ interface MatchDetailsModalProps {
   player2: Player;
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
-  isPublic?: boolean;
 }
 
 interface PlayerScoreProps {
@@ -38,10 +38,10 @@ const MatchDetailsModal = ({
   player2,
   setOpen,
   open,
-  group,
-  isPublic
+  group
 }: MatchDetailsModalProps) => {
   const [visibleEditForm, setVisibleEditForm] = useState(false);
+  const isLogged = useAppSelector((state) => state.currentSession.sessionToken);
 
   return (
     <>
@@ -64,7 +64,7 @@ const MatchDetailsModal = ({
             <EditPointsTable match={match} setVisible={setVisibleEditForm} />
           ) : (
             <>
-              {!isPublic && (
+              {isLogged && (
                 <Stack flexDirection="row" justifyContent="flex-end" mb={1}>
                   <Button onClick={() => setVisibleEditForm(true)}>Edytuj punkty</Button>
                 </Stack>

@@ -13,10 +13,9 @@ import { getScore } from '@/utility/getScore';
 
 interface MatchSingleItemProps {
   matchId: Id;
-  isPublic?: boolean;
 }
 
-const MatchSingleItem = ({ matchId, isPublic }: MatchSingleItemProps) => {
+const MatchSingleItem = ({ matchId }: MatchSingleItemProps) => {
   const [openDetails, setOpenDetails] = useState(false);
 
   const { data: match } = useGetMatchByIdQuery(matchId);
@@ -73,7 +72,6 @@ const MatchSingleItem = ({ matchId, isPublic }: MatchSingleItemProps) => {
       </ButtonBase>
       {match && group && player1 && player2 && (
         <MatchDetailsModal
-          isPublic={isPublic}
           match={match!}
           group={group!}
           open={openDetails}

@@ -8,13 +8,9 @@ import COLOR from '@/themes/colors';
 interface CourtColumnProps {
   singleMatchesId: Id[];
   court: number;
-  isPublic?: boolean;
 }
 
-const CourtColumn = ({ singleMatchesId, court, isPublic }: CourtColumnProps) => {
-  // const singleFirstMatch = useMemo(() => singleMatches.at(0)?.startDataTime!, []);
-  // const singleLastMatch = useMemo(() => singleMatches.at(-1)?.startDataTime!, []);
-
+const CourtColumn = ({ singleMatchesId, court }: CourtColumnProps) => {
   return (
     <Stack bgcolor={'white'} style={{ borderRadius: '10px' }}>
       <Stack
@@ -27,7 +23,7 @@ const CourtColumn = ({ singleMatchesId, court, isPublic }: CourtColumnProps) => 
         </Typography>
       </Stack>
       <Stack>
-        <SinglesMatchesCells singleMatchesId={singleMatchesId} isPublic={isPublic} />
+        <SinglesMatchesCells singleMatchesId={singleMatchesId} />
       </Stack>
     </Stack>
   );

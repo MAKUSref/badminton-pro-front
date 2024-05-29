@@ -29,7 +29,7 @@ const HoursColumn = () => {
       </Stack>
       <Stack>
         {timeArray.map((hour, index) => (
-          <Divider key={index} sx={{ mb: '48px' }}>
+          <Divider key={index} sx={{ mb: '66.5px' }}>
             <Typography fontSize=".6rem">{hour}</Typography>
           </Divider>
         ))}

@@ -8,6 +8,7 @@ import TableSkeleton from '@/components/skeletons/TableSkeleton';
 import { useGetSinglesQuery, useRemoveSingleByIdMutation } from '@/redux/api/singlesApi';
 import { Group } from '@/redux/types/Group';
 import { getGroupName } from '@/utility/getGroupName';
+import { useAppSelector } from '@/redux/store';
 
 interface PlayersTableProps {
   group: Group;
@@ -18,6 +19,7 @@ const SinglesTable = ({ group }: PlayersTableProps) => {
     groupId: group._id
   });
   const [remove] = useRemoveSingleByIdMutation();
+  const isLogged = useAppSelector((state) => state.currentSession.sessionToken);
 
   return (
     <Stack maxWidth="400px" px={2}>
@@ -25,7 +27,7 @@ const SinglesTable = ({ group }: PlayersTableProps) => {
         <Typography variant="h6">
           {getGroupName(group?.type, group?.gender, group?.category)}
         </Typography>
-        <AddSinglesModal gender={group.gender!} groupId={group._id} />
+        {isLogged && <AddSinglesModal gender={group.gender!} groupId={group._id} />}
       </Stack>
       <PlayersTable isEmpty={singles?.length === 0}>
         <>

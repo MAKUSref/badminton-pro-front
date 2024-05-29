@@ -7,6 +7,7 @@ import { useGetRegisterStatusQuery } from '@/redux/api/registerStatusApi';
 import { useGetSingleScoreByIdQuery } from '@/redux/api/singlesApi';
 import { RegisterStatus } from '@/redux/types/common';
 import { Single } from '@/redux/types/Group';
+import { useAppSelector } from '@/redux/store';
 
 interface PlayerRowProps {
   index: number;
@@ -19,12 +20,11 @@ const PlayerRow = ({ single: { playerId, _id }, index, onRemoveClick }: PlayerRo
   const [actionsVisible, setActionsVisible] = useState(false);
   const { data: registerStatus } = useGetRegisterStatusQuery();
   const { data: score } = useGetSingleScoreByIdQuery({ id: _id });
-
-  console.log(_id);
+  const isLogged = useAppSelector((state) => !!state.currentSession.sessionToken);
 
   return (
     <TableRow
-      hover
+      hover={isLogged}
       onMouseOver={() => setActionsVisible(true)}
       onMouseOut={() => {
         setActionsVisible(false);
@@ -38,25 +38,26 @@ const PlayerRow = ({ single: { playerId, _id }, index, onRemoveClick }: PlayerRo
         </Typography>
       </TableCell>
       <TableCell component="th" scope="row">
-        <Typography>{score?.allMatches}</Typography>
-      </TableCell>
-      <TableCell component="th" scope="row">
-        <Typography>{score?.playedMatches}</Typography>
+        <Typography>
+          {score?.playedMatches}/{score?.allMatches}
+        </Typography>
       </TableCell>
       <TableCell component="th" scope="row">
         <Typography fontWeight="bold">{score?.score}</Typography>
       </TableCell>
-      <TableCell align="right">
-        {actionsVisible && registerStatus === RegisterStatus.ADMIN_REGISTER ? (
-          <Tooltip title="Usuń z grupy" placement="top">
-            <IconButton onClick={onRemoveClick}>
-              <DeleteRoundedIcon />
-            </IconButton>
-          </Tooltip>
-        ) : (
-          <Box width="35px" height="35px" />
-        )}
-      </TableCell>
+      {isLogged && (
+        <TableCell align="right">
+          {actionsVisible && registerStatus === RegisterStatus.ADMIN_REGISTER ? (
+            <Tooltip title="Usuń z grupy" placement="top">
+              <IconButton onClick={onRemoveClick}>
+                <DeleteRoundedIcon />
+              </IconButton>
+            </Tooltip>
+          ) : (
+            <Box width="35px" height="35px" />
+          )}
+        </TableCell>
+      )}
     </TableRow>
   );
 };

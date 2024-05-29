@@ -1,14 +1,17 @@
-import { Box, Button, Container, Stack, Typography } from '@mui/material';
+import { Button, Container, Stack, Typography } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 
-import INTRO_BG from '../../../assets/intro-bg.png';
+import INTRO_BG from '@/assets/intro-bg.svg';
 import PATH_CREATE_LEAGUE from '@/routes/urls';
 import COLOR from '@/themes/colors';
 
 const HomePage = () => {
   return (
     <Stack height="100vh" position="relative" justifyContent="center">
-      <img src={INTRO_BG} style={{ position: 'absolute', top: 0, right: 0 }} />
+      <img
+        src={INTRO_BG}
+        style={{ position: 'absolute', top: 0, right: 0, zIndex: -10, width: 600 }}
+      />
       <Container>
         <Typography maxWidth="1000px" lineHeight="5.5rem" variant="h1">
           Rozpocznij swój turniej badmintona
@@ -17,16 +20,17 @@ const HomePage = () => {
           Stwórz swoją ligę badmintona i bądź na bieżąco z wynikami swoich zawodników. Niech emocje
           związane z grą nigdy nie opuszczają Cię!
         </Typography>
-        <NavLink to={PATH_CREATE_LEAGUE.LOGIN}>
+
+        <Stack gap={1} alignItems="center" width="fit-content">
           <Button variant="contained" color="primary" size="large">
-            Rozpocznij
+            Zarejestruj się
           </Button>
-        </NavLink>
-        <Box mt={3}>
-          <Button color="primary" size="large">
-            Zarejestrój się
-          </Button>
-        </Box>
+          <NavLink to={PATH_CREATE_LEAGUE.LOGIN}>
+            <Button color="primary" size="large">
+              Zaloguj się
+            </Button>
+          </NavLink>
+        </Stack>
       </Container>
     </Stack>
   );

@@ -5,6 +5,7 @@ import CLUB_LOGO_IMG from '@/assets/club-logo.png';
 import ScheduleTable from '@/components/schedule/ScheduleTable';
 import { useGetScheduleQuery } from '@/redux/api/scheduleApi';
 import { useGetMyTournamentQuery } from '@/redux/api/tournamentApi';
+import SinglesPage from '@/pages/Organizer/groups/SinglesPage';
 
 const ScheduleContainer = () => {
   const { data: scheduleDetails, isLoading } = useGetScheduleQuery();
@@ -13,7 +14,7 @@ const ScheduleContainer = () => {
     return <CircularProgress sx={{ justifySelf: 'center' }} size={20} />;
   }
 
-  return scheduleDetails && <ScheduleTable scheduleDetails={scheduleDetails} isPublic={true} />;
+  return scheduleDetails && <ScheduleTable scheduleDetails={scheduleDetails} />;
 };
 
 const TournamentPage = () => {
@@ -52,6 +53,7 @@ const TournamentPage = () => {
           <Tab label={'O turnieju'} />
         </Tabs>
         {value === 0 && <ScheduleContainer />}
+        {value === 1 && <SinglesPage />}
       </Container>
     </Stack>
   );

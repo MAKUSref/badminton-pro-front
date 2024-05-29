@@ -33,7 +33,7 @@ const GroupPage = ({ groupType, children, isEmpty }: AddPlayerToGroupModalProps)
   }
 
   return (
-    <Container>
+    <Container sx={{ pb: 10 }}>
       <Stack direction="row" justifyContent="space-between" alignItems="flex-end">
         <Typography variant="h2" mt={2}>
           {getGroupName(groupType)}
