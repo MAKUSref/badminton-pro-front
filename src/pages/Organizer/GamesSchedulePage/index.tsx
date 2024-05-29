@@ -1,4 +1,4 @@
-import { Box, Container, Stack, Typography } from '@mui/material';
+import { Box, CircularProgress, Container, Stack, Typography } from '@mui/material';
 
 import GenerateScheduleModal from '@/components/schedule/GenerateScheduleModal';
 import ScheduleTable from '@/components/schedule/ScheduleTable';
@@ -6,7 +6,15 @@ import { useGetScheduleQuery } from '@/redux/api/scheduleApi';
 import COLOR from '@/themes/colors';
 
 const GamesSchedulePage = () => {
-  const { data: scheduleDetails } = useGetScheduleQuery();
+  const { data: scheduleDetails, isLoading } = useGetScheduleQuery();
+
+  if (isLoading) {
+    return (
+      <Container>
+        <CircularProgress sx={{ justifySelf: 'center' }} size={20} />
+      </Container>
+    );
+  }
 
   return (
     <Container>

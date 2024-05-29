@@ -17,6 +17,7 @@ interface MatchDetailsModalProps {
   player2: Player;
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
+  isPublic?: boolean;
 }
 
 interface PlayerScoreProps {
@@ -37,7 +38,8 @@ const MatchDetailsModal = ({
   player2,
   setOpen,
   open,
-  group
+  group,
+  isPublic
 }: MatchDetailsModalProps) => {
   const [visibleEditForm, setVisibleEditForm] = useState(false);
 
@@ -62,9 +64,11 @@ const MatchDetailsModal = ({
             <EditPointsTable match={match} setVisible={setVisibleEditForm} />
           ) : (
             <>
-              <Stack flexDirection="row" justifyContent="flex-end" mb={1}>
-                <Button onClick={() => setVisibleEditForm(true)}>Edytuj punkty</Button>
-              </Stack>
+              {!isPublic && (
+                <Stack flexDirection="row" justifyContent="flex-end" mb={1}>
+                  <Button onClick={() => setVisibleEditForm(true)}>Edytuj punkty</Button>
+                </Stack>
+              )}
               <PointsTable match={match} />
             </>
           )}

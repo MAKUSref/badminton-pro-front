@@ -11,9 +11,10 @@ import { ScheduleDetails } from '@/redux/types/Match';
 
 interface ScheduleTableProps {
   scheduleDetails: ScheduleDetails;
+  isPublic?: boolean;
 }
 
-const ScheduleTable = ({ scheduleDetails }: ScheduleTableProps) => {
+const ScheduleTable = ({ scheduleDetails, isPublic }: ScheduleTableProps) => {
   const [round, setRound] = useState(0);
 
   const courts = useMemo(
@@ -44,6 +45,7 @@ const ScheduleTable = ({ scheduleDetails }: ScheduleTableProps) => {
             key={court}
             court={court + 1}
             singleMatchesId={scheduleDetails.schedule[round][court]}
+            isPublic={isPublic}
           />
         ))}
       </Stack>
