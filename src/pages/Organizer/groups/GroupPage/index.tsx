@@ -2,8 +2,8 @@ import { Container, Grid, Typography } from '@mui/material';
 import { PropsWithChildren, useMemo } from 'react';
 
 import NoGroups from '@/components/groups/NoGroups';
-import { GroupType, TournamentStatus } from '@/redux/types/common';
 import { useAppSelector } from '@/redux/store';
+import { GroupType, TournamentStatus } from '@/redux/types/common';
 
 interface AddPlayerToGroupModalProps extends PropsWithChildren {
   groupType: GroupType;

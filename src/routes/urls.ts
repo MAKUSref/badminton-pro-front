@@ -1,6 +1,6 @@
 module PATH_CREATE_LEAGUE {
   export const ORGANIZER = '/organizer';
-  export const TOURNAMENT = '/tournament-mikolajki';
+  export const TOURNAMENT = '/tournament/:id';
   export const HOME = '/';
   export const LOGIN = '/login';
   export const GAMES_SCHEDULE = '/organizer/games-schedule';
