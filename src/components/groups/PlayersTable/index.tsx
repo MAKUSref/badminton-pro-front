@@ -32,7 +32,7 @@ const NoPlayers = () => {
 const PlayersTable = ({ children, isEmpty }: PlayersTableProps) => {
   const isLogged = useAppSelector((state) => !!state.currentSession.sessionToken);
   const status = useAppSelector((state) => state.currentSession.tournamentStatus);
-  const active = useMemo(() => status === TournamentStatus.ADDING_PLAYERS_GROUPS, [status]);
+  const active = useMemo(() => status === TournamentStatus.REGISTER_PLAYERS, [status]);
   return (
     <TableContainer component={Paper}>
       <Table size="small">

@@ -3,7 +3,6 @@ import { TableRow, TableCell, Tooltip, Box, IconButton, Typography } from '@mui/
 import { useState } from 'react';
 
 import { useGetPlayerByIdQuery } from '@/redux/api/playerApi';
-import { useGetRegisterStatusQuery } from '@/redux/api/registerStatusApi';
 import { useGetSingleScoreByIdQuery } from '@/redux/api/singlesApi';
 import { useAppSelector } from '@/redux/store';
 import { TournamentStatus } from '@/redux/types/common';
@@ -18,9 +17,11 @@ interface PlayerRowProps {
 const PlayerRow = ({ single: { playerId, _id }, index, onRemoveClick }: PlayerRowProps) => {
   const { data: player } = useGetPlayerByIdQuery(playerId);
   const [actionsVisible, setActionsVisible] = useState(false);
-  const { data: registerStatus } = useGetRegisterStatusQuery();
+  const registerStatus = useAppSelector((state) => state.currentSession.tournamentStatus);
   const { data: score } = useGetSingleScoreByIdQuery({ id: _id });
   const isLogged = useAppSelector((state) => !!state.currentSession.sessionToken);
+
+  console.log(registerStatus === TournamentStatus.REGISTER_PLAYERS);
 
   return (
     <TableRow
@@ -39,11 +40,11 @@ const PlayerRow = ({ single: { playerId, _id }, index, onRemoveClick }: PlayerRo
       </TableCell>
       <TableCell component="th" scope="row">
         <Typography>
-          {score?.playedMatches}/{score?.allMatches}
+          {score?.playedMatches ?? 0}/{score?.allMatches ?? 0}
         </Typography>
       </TableCell>
       <TableCell component="th" scope="row">
-        <Typography fontWeight="bold">{score?.score}</Typography>
+        <Typography fontWeight="bold">{score?.score ?? 0}</Typography>
       </TableCell>
       {isLogged && (
         <TableCell align="right">
@@ -54,7 +55,9 @@ const PlayerRow = ({ single: { playerId, _id }, index, onRemoveClick }: PlayerRo
               </IconButton>
             </Tooltip>
           ) : (
-            <Box width="35px" height="35px" />
+            registerStatus === TournamentStatus.REGISTER_PLAYERS && (
+              <Box width="35px" height="35px" />
+            )
           )}
         </TableCell>
       )}
