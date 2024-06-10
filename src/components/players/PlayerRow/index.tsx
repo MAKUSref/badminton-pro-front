@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import EditPlayerModal from '../EditPlayerModal';
 import { Player } from '@/redux/types/Player';
+import RoleChip from '../RoleChip';
 
 //TODO: Suspend User
 
@@ -20,7 +21,9 @@ const PlayerRow = ({ user }: { user: Player }) => {
       </TableCell>
       <TableCell align="right">{user.email}</TableCell>
       <TableCell align="right">{user.phoneNumber}</TableCell>
-      <TableCell align="right">{'Brak roli'}</TableCell>
+      <TableCell align="right">
+        <RoleChip role="PLAYER" />
+      </TableCell>
       <TableCell align="right">
         {actionsVisible ? (
           <>
