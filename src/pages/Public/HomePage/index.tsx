@@ -22,9 +22,11 @@ const HomePage = () => {
         </Typography>
 
         <Stack gap={1} alignItems="center" width="fit-content">
-          <Button variant="contained" color="primary" size="large">
-            Zarejestruj się
-          </Button>
+          <NavLink to={PATH_CREATE_LEAGUE.REGISTER}>
+            <Button variant="contained" color="primary" size="large">
+              Zarejestruj się
+            </Button>
+          </NavLink>
           <NavLink to={PATH_CREATE_LEAGUE.LOGIN}>
             <Button color="primary" size="large">
               Zaloguj się

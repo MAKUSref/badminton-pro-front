@@ -1,32 +1,40 @@
 import { Box, Button, Stack, TextField, Typography } from '@mui/material';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import INTRO_BG from '@/assets/intro-bg.svg';
 import Logo from '@/components/Logo';
-import { setToken } from '@/redux/slices/currentSession';
-import { useAppSelector } from '@/redux/store';
+import { registerAccount } from '@/redux/slices/currentSession';
+import { useAppDispatch } from '@/redux/store';
 import PATH_CREATE_LEAGUE from '@/routes/urls';
 import COLOR from '@/themes/colors';
 
-interface LoginSchema {
+interface RegisterSchema {
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
+  repeatPassword: string;
 }
 
-const LoginPage = () => {
-  const { accounts } = useAppSelector((state) => state.currentSession);
-  const { register, handleSubmit } = useForm<LoginSchema>();
-  const dispatch = useDispatch();
+const RegisterPage = () => {
+  const { register, handleSubmit } = useForm<RegisterSchema>();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
-  const onSubmit = ({ email, password }: LoginSchema) => {
-    const account = accounts?.find((acc) => acc.email === email && acc.password === password);
-    if (account) {
-      dispatch(setToken(account.id));
-      navigate(PATH_CREATE_LEAGUE.PLAYERS);
+  const onSubmit = ({ email, firstName, lastName, password, repeatPassword }: RegisterSchema) => {
+    if (email && firstName && lastName && password && repeatPassword) {
+      if (password === repeatPassword) {
+        dispatch(registerAccount({ email, password, firstName, lastName }));
+        toast.success('Zarejestrowano pomyślnie!');
+        navigate(PATH_CREATE_LEAGUE.LOGIN);
+        return;
+      }
+      toast.error('Hasła nie są takie same!');
+      return;
     }
+    toast.error('Wypełnij wszystkie pola!');
   };
 
   return (
@@ -60,30 +68,45 @@ const LoginPage = () => {
               </NavLink>
             </Stack>
             <Box mb={3}>
+              <TextField {...register('firstName')} label="Imię" size="small" fullWidth />
+            </Box>
+            <Box mb={3}>
+              <TextField {...register('lastName')} label="Nazwisko" size="small" fullWidth />
+            </Box>
+            <Box mb={3}>
               <TextField {...register('email')} label="E-mail" size="small" fullWidth />
             </Box>
             <Box mb={3}>
               <TextField
                 {...register('password')}
-                label="Password"
+                label="Hasło"
+                size="small"
+                type="password"
+                fullWidth
+              />
+            </Box>
+            <Box mb={3}>
+              <TextField
+                {...register('repeatPassword')}
+                label="Powtórz hasło"
                 size="small"
                 type="password"
                 fullWidth
               />
             </Box>
             <Typography variant="body1">
-              Nie masz jeszcze konta?{' '}
+              Masz już konto?{' '}
               <NavLink
-                to={PATH_CREATE_LEAGUE.REGISTER}
+                to={PATH_CREATE_LEAGUE.LOGIN}
                 style={{ textDecoration: 'none', color: 'inherit' }}>
                 <Typography variant="caption" fontSize="inherit" color="primary" fontWeight="700">
-                  Zarejestruj się!
+                  Zaloguj się!
                 </Typography>
               </NavLink>
             </Typography>
             <Box mt={3}>
               <Button sx={{ mx: 'auto', display: 'block' }} variant="contained" type="submit">
-                Zaloguj się
+                Zarejestruj się
               </Button>
             </Box>
           </form>
@@ -93,4 +116,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default RegisterPage;

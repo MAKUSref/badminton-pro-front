@@ -15,9 +15,9 @@ export const singlesApi = baseApi.injectEndpoints({
     }),
     getSingleScoreById: builder.query<
       { allMatches: number; playedMatches: number; score: number },
-      { id: Id }
+      Id
     >({
-      query: ({ id }) => {
+      query: (id) => {
         if (!id) throw new Error(GROUP_NULL_ERR);
         return `/singles/${id}/score`;
       },
@@ -60,7 +60,9 @@ export const {
   useAddSingleMutation,
   useGetSingleByIdQuery,
   useGetSinglesQuery,
+  useLazyGetSinglesQuery,
   useRemoveSingleByIdMutation,
   useAddManySinglesMutation,
-  useGetSingleScoreByIdQuery
+  useGetSingleScoreByIdQuery,
+  useLazyGetSingleScoreByIdQuery
 } = singlesApi;

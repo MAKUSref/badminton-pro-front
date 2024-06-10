@@ -13,8 +13,8 @@ import { PropsWithChildren, useMemo } from 'react';
 
 import ADD_IMAGE from '@/assets/add.png';
 import { useAppSelector } from '@/redux/store';
-import COLOR from '@/themes/colors';
 import { TournamentStatus } from '@/redux/types/common';
+import COLOR from '@/themes/colors';
 
 interface PlayersTableProps extends PropsWithChildren {
   isEmpty: boolean;
@@ -40,8 +40,8 @@ const PlayersTable = ({ children, isEmpty }: PlayersTableProps) => {
           <TableRow>
             <TableCell>Lp</TableCell>
             <TableCell>Imię i nazwisko</TableCell>
-            <TableCell align="right"></TableCell>
-            <TableCell align="right"></TableCell>
+            <TableCell align="right">Mecze</TableCell>
+            <TableCell align="right">Punkty</TableCell>
             {isLogged && active && <TableCell align="right"></TableCell>}
           </TableRow>
         </TableHead>

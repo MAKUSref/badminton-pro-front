@@ -1,8 +1,9 @@
 module PATH_CREATE_LEAGUE {
-  export const ORGANIZER = '/organizer';
-  export const TOURNAMENT = '/tournament/:id';
   export const HOME = '/';
   export const LOGIN = '/login';
+  export const REGISTER = '/register';
+  export const TOURNAMENT = '/tournament/:id';
+  export const ORGANIZER = '/organizer';
   export const GAMES_SCHEDULE = '/organizer/games-schedule';
   export const SINGLES = '/organizer/singles';
   export const PLAYERS = '/organizer/players';

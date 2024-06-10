@@ -60,6 +60,7 @@ export const {
   useGetAllPlayersQuery,
   useGetAllPlayersAvailableForSingleQuery,
   useGetPlayerByIdQuery,
+  useLazyGetPlayerByIdQuery,
   useSuspendAccountByIdMutation,
   useUpdatePlayerMutation,
   useAddAllPlayersMutation
