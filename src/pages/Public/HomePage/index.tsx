@@ -7,10 +7,12 @@ import COLOR from '@/themes/colors';
 import HowToSection from './HowToSection';
 import Footer from './Footer';
 import PlansSection from './PlansSection';
+import Navbar from './Navbar';
 
 const HomePage = () => {
   return (
     <>
+      <Navbar />
       <Stack height="100vh" position="relative" justifyContent="center">
         <img
           src={INTRO_BG}
