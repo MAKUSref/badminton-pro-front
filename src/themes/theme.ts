@@ -38,7 +38,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           borderRadius: '7px',
-          textTransform: 'capitalize',
+          textTransform: 'none',
           letterSpacing: '1px',
           width: 'fit-content',
           height: 'fit-content'

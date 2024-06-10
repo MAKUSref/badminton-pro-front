@@ -5,6 +5,8 @@ import INTRO_BG from '@/assets/intro-bg.svg';
 import PATH_CREATE_LEAGUE from '@/routes/urls';
 import COLOR from '@/themes/colors';
 import HowToSection from './HowToSection';
+import Footer from './Footer';
+import PlansSection from './PlansSection';
 
 const HomePage = () => {
   return (
@@ -38,6 +40,8 @@ const HomePage = () => {
         </Container>
       </Stack>
       <HowToSection />
+      <PlansSection />
+      <Footer />
     </>
   );
 };

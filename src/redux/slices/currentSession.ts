@@ -22,10 +22,10 @@ const initialState: CurrentSessionContext = {
   accounts: [
     {
       id: crypto.randomUUID(),
-      email: 'admin',
-      password: 'admin',
-      firstName: 'Admin',
-      lastName: 'Admin'
+      email: 'jan.kowalski@example.com',
+      password: 'password123',
+      firstName: 'Jan',
+      lastName: 'Kowalski'
     }
   ]
 };
