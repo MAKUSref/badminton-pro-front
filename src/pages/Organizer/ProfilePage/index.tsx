@@ -15,9 +15,7 @@ const ProfiePage = () => {
         <Typography variant="h2" mt={2} mb={4}>
           Moje konto
         </Typography>
-        <SettingsSection
-          title="Imie i nazwisko"
-          description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, sunt...">
+        <SettingsSection title="Imie i nazwisko" description="Zmiana danych osobowych.">
           <Box my={2} maxWidth="650px">
             <TextField size="small" label="Imie" defaultValue={user?.firstName} fullWidth />
           </Box>
@@ -28,7 +26,7 @@ const ProfiePage = () => {
 
         <SettingsSection
           title="Zmiana adresu e-mail"
-          description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, sunt...">
+          description="Zmiana adresu e-mail wiążę się z koniecznością ponownego potwierdzenia go.">
           <Box my={2} maxWidth="650px">
             <TextField size="small" label="E-mail" defaultValue={user?.email} fullWidth />
           </Box>
@@ -36,7 +34,7 @@ const ProfiePage = () => {
 
         <SettingsSection
           title="Zmiana hasła"
-          description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, sunt...">
+          description="Tutaj możesz zmienić swoje stare hasło na nowe.">
           <Box my={2} maxWidth="650px">
             <TextField size="small" label="Nowe hasło" fullWidth type="password" />
           </Box>
@@ -47,7 +45,7 @@ const ProfiePage = () => {
 
         <SettingsSection
           title="Usuń konto"
-          description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, sunt..."
+          description="Uwaga! Ta opcja bezpowrotnie usunie twój profil."
           btnLabel="Usuń"
           sectionVariant="danger"></SettingsSection>
       </Stack>

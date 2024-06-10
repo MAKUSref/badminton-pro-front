@@ -49,7 +49,7 @@ const SettingsPage = () => {
           sectionVariant="danger"
           btnLabel="Usuń turniej"
           title="Usuń turniej"
-          description="Ten turniej zostanie permamentie usunięty. Również z historii."></SettingsSection>
+          description="Uwaga! Ta opcja bezpowrotnie usuwa turniej."></SettingsSection>
       </Stack>
     </Container>
   );

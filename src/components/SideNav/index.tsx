@@ -33,7 +33,7 @@ const SideNav = () => {
         <Box ml={3} mb={3}>
           <Logo />
         </Box>
-        <Typography color={COLOR.LIGHT_GREY_TEXT} fontSize=".7rem" ml={3} mb={1}>
+        <Typography color={COLOR.LIGHT_GREY_TEXT} fontSize=".9rem" ml={3} mb={1}>
           {tournament?.name}
         </Typography>
         <Divider />
