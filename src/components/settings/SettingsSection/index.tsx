@@ -22,6 +22,7 @@ const SettingsSection = ({
 }: PropsWithChildren<SettingsSectionProps>) => {
   return (
     <Box
+      sx={{ backgroundColor: 'white' }}
       border="1px solid"
       borderRadius={2}
       borderColor={sectionVariant === 'primary' ? BORDER_COLOR : 'red'}

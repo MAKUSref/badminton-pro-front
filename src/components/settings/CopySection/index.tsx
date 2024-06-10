@@ -22,7 +22,13 @@ const CopySection = () => {
   };
 
   return (
-    <Box border="1px solid" borderRadius={2} borderColor={BORDER_COLOR} pt={3} mb={4}>
+    <Box
+      sx={{ bgcolor: 'white' }}
+      border="1px solid"
+      borderRadius={2}
+      borderColor={BORDER_COLOR}
+      pt={3}
+      mb={4}>
       <Box px={3}>
         <Typography mb={2} variant="h3" fontSize="1.4rem" fontWeight="500">
           Link do turnieju

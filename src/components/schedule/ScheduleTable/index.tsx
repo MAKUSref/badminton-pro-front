@@ -37,7 +37,7 @@ const ScheduleTable = ({ scheduleDetails }: ScheduleTableProps) => {
         />
       )}
 
-      <Stack direction="row" gap={1} bgcolor={'#F9F9F9'} p={1} style={{ borderRadius: '10px' }}>
+      <Stack direction="row" gap={1} bgcolor={'#F9F9F9'} p={1} style={{ borderRadius: '10px', width: 'fit-content' }}>
         <HoursColumn />
         {courts.map((court) => (
           <CourtColumn

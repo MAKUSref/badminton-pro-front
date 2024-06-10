@@ -38,7 +38,7 @@ const SelectRound = ({ date, roundsCount, setRound, round }: SelectRoundProps) =
       <Menu anchorEl={anchorEl} open={open} onClose={() => handleClose(0)}>
         {Array.from(Array(roundsCount).keys()).map((_round, index) => (
           <MenuItem key={index} onClick={() => handleClose(index)}>
-            Kolejka {index + 1}
+            Dzień {index + 1}
           </MenuItem>
         ))}
       </Menu>
