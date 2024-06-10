@@ -5,10 +5,12 @@ import INTRO_BG from '@/assets/intro-bg.svg';
 import PATH_CREATE_LEAGUE from '@/routes/urls';
 import COLOR from '@/themes/colors';
 import HowToSection from './HowToSection';
+import Navbar from './Navbar';
 
 const HomePage = () => {
   return (
     <>
+      <Navbar />
       <Stack height="100vh" position="relative" justifyContent="center">
         <img
           src={INTRO_BG}
