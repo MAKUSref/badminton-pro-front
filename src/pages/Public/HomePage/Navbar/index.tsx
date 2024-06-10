@@ -1,33 +1,15 @@
 import { Box, Button, Container, Stack } from '@mui/material';
-import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import Logo from '@/components/Logo';
 
 const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  const handleScroll = () => {
-    setIsScrolled(window.scrollY > 0);
-  };
-
-  useEffect(() => {
-    handleScroll();
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
   return (
     <Box
       sx={{
         transition: 'background-color 0.3s'
       }}
-      bgcolor={isScrolled ? 'white' : 'transparent'}
-      position="fixed"
+      position={'absolute'}
       top={0}
       left={0}
       width="100%"

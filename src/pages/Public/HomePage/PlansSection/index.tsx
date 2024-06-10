@@ -4,7 +4,7 @@ import PlanCard from './PlanCard';
 
 const PlansSection = () => {
   return (
-    <Stack position={'relative'}>
+    <Stack position={'relative'} pt={10}>
       <img
         src={OVAL_BG}
         style={{ marginBottom: -1, position: 'absolute', bottom: 0, zIndex: -1 }}
