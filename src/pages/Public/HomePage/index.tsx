@@ -1,13 +1,14 @@
 import { Button, Container, Stack, Typography } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 
+import Footer from './Footer';
+import HowToSection from './HowToSection';
+import Navbar from './Navbar';
+import PlansSection from './PlansSection';
+
 import INTRO_BG from '@/assets/intro-bg.svg';
 import PATH_CREATE_LEAGUE from '@/routes/urls';
 import COLOR from '@/themes/colors';
-import HowToSection from './HowToSection';
-import Footer from './Footer';
-import PlansSection from './PlansSection';
-import Navbar from './Navbar';
 
 const HomePage = () => {
   return (

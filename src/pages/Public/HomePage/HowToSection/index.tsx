@@ -10,13 +10,13 @@ const HowToSection = () => {
   return (
     <section>
       <Container>
-        <Grid container spacing={5}>
-          <Grid item xs={12} md={6}>
-            <Box textAlign="center">
-              <img style={{ width: '100%', maxWidth: '500px' }} src={HOW_TO_1} />
-            </Box>
-          </Grid>
-          <Grid item xs={12} md={6}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <div className="text-center">
+              <img className="w-full max-w-[500px] inline-block" src={HOW_TO_1} />
+            </div>
+          </div>
+          <div>
             <Stack height="100%" justifyContent="center">
               <Typography variant="h2" mb={3}>
                 1. Zapisz zawodników
@@ -32,8 +32,8 @@ const HowToSection = () => {
                 </Typography>
               </Typography>
             </Stack>
-          </Grid>
-        </Grid>
+          </div>
+        </div>
 
         <Grid container spacing={5} mt="120px">
           <Grid item xs={12} md={6}>
