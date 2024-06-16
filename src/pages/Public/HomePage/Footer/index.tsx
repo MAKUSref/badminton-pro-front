@@ -8,8 +8,8 @@ const Footer = () => {
   return (
     <div className="bg-[#4A5CF9]">
       <div className="container">
-        <div className="flex text-white pb-10 pt-24 gap-10 sm:gap-32">
-          <Stack>
+        <div className="flex flex-col sm:flex-row text-white pb-10 pt-24 gap-10 sm:gap-32">
+          <Stack className="text-center sm:text-left items-center sm:items-start">
             <div className="hidden sm:block">
               <Logo mode="dark" size="large" />
             </div>
@@ -18,7 +18,7 @@ const Footer = () => {
             </div>
             <Typography>Internetowy system do koordynowania turnieji badmintona.</Typography>
           </Stack>
-          <Stack gap={1} mt={3}>
+          <Stack className="text-center sm:text-left" gap={1} mt={3}>
             <Typography variant="h5" fontWeight="bold">
               Kontakt
             </Typography>

@@ -1,6 +1,7 @@
 import { Button, Typography } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 
+import CookieModal from './CookieModal';
 import Footer from './Footer';
 import HowToSection from './HowToSection';
 import Navbar from './Navbar';
@@ -44,6 +45,7 @@ const HomePage = () => {
       <HowToSection />
       <PlansSection />
       <Footer />
+      <CookieModal />
     </div>
   );
 };
