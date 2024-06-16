@@ -5,7 +5,7 @@ import OVAL_BG from '@/assets/footer-oval-bg.svg';
 const PlansSection = () => {
   return (
     <div className="relative pt-10">
-      <img src={OVAL_BG} className="absolute bottom-0 -z-10 -mb-1" />
+      <img src={OVAL_BG} className="absolute bottom-0 w-full -z-10 -mb-1" />
       <div className="flex flex-col-reverse sm:flex-row gap-5 justify-center">
         <PlanCard
           title="Wersja darmowa"

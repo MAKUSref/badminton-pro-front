@@ -1,11 +1,14 @@
-import Logo from '@/components/Logo';
 import { Stack, Typography } from '@mui/material';
+
+import POLICY_PDF from '@/bin/policy.pdf';
+import LICENSE_PDF from '@/bin/policy.pdf';
+import Logo from '@/components/Logo';
 
 const Footer = () => {
   return (
     <div className="bg-[#4A5CF9]">
       <div className="container">
-        <div className="flex text-white pb-10 pt-5 gap-10 sm:gap-32">
+        <div className="flex text-white pb-10 pt-24 gap-10 sm:gap-32">
           <Stack>
             <div className="hidden sm:block">
               <Logo mode="dark" size="large" />
@@ -26,15 +29,19 @@ const Footer = () => {
         </div>
       </div>
       <div className="bg-[#3D4AB9]">
-        <div className="container flex justify-center py-1 gap-7 text-white ">
+        <div className="container py-3 flex justify-center gap-7 text-white">
           <Typography fontSize="0.7rem" textAlign="center">
             © 2024 BadmintonPro. Wszelkie prawa zastrzeżone.
           </Typography>
           <Typography fontSize="0.7rem" textAlign="center">
-            Polityka prawności
+            <a href={POLICY_PDF} target="_blank" rel="noreferrer">
+              Polityka prawności
+            </a>
           </Typography>
           <Typography fontSize="0.7rem" textAlign="center">
-            Regulamin
+            <a href={LICENSE_PDF} target="_blank" rel="noreferrer">
+              Regulamin
+            </a>
           </Typography>
         </div>
       </div>
