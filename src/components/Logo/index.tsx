@@ -1,7 +1,7 @@
 import { Stack, Typography } from '@mui/material';
 
-import LOGO_IMG from '@/assets/logo.svg';
 import LOGO_DARK_IMG from '@/assets/logo-dark.svg';
+import LOGO_IMG from '@/assets/logo.svg';
 import COLOR from '@/themes/colors';
 
 interface LogoProps {
