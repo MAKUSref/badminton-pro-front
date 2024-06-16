@@ -13,7 +13,7 @@ interface PlanCardProps {
 
 const PlanCard = ({ pros, main, title, desc, btnText }: PlanCardProps) => {
   return (
-    <Stack alignItems="center" position="relative">
+    <div className="flex flex-col items-center relative">
       {main && <img src={EXTRA_PLAN} width={100} style={{ position: 'absolute', top: -70 }} />}
       <Stack
         boxShadow={main ? '0px 0px 33px 0px rgba(74, 92, 249, 1)' : 3}
@@ -44,7 +44,7 @@ const PlanCard = ({ pros, main, title, desc, btnText }: PlanCardProps) => {
           </Button>
         </Stack>
       </Stack>
-    </Stack>
+    </div>
   );
 };
 

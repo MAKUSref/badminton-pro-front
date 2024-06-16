@@ -1,34 +1,26 @@
-import { Box, Button, Container, Stack } from '@mui/material';
+import { Button } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 
 import Logo from '@/components/Logo';
 
 const Navbar = () => {
   return (
-    <Box
-      sx={{
-        transition: 'background-color 0.3s'
-      }}
-      position={'absolute'}
-      top={0}
-      left={0}
-      width="100%"
-      zIndex={900}>
-      <Container>
-        <Stack direction="row" alignItems="center" justifyContent="space-between">
-          <Box>
+    <div className="absolute w-full ">
+      <div className="container  ">
+        <div className="flex items-center justify-between">
+          <div>
             <NavLink to="/#!" style={{ color: 'inherit', textDecoration: 'none' }}>
               <Logo />
             </NavLink>
-          </Box>
-          <Box>
+          </div>
+          <div className="hidden sm:block">
             <NavLink to="/login">
               <Button>Zaloguj się</Button>
             </NavLink>
-          </Box>
-        </Stack>
-      </Container>
-    </Box>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

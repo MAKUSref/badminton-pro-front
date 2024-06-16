@@ -1,4 +1,4 @@
-import { Button, Container, Stack, Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 
 import Footer from './Footer';
@@ -12,23 +12,20 @@ import COLOR from '@/themes/colors';
 
 const HomePage = () => {
   return (
-    <>
+    <div className="relative">
       <Navbar />
-      <Stack height="100vh" position="relative" justifyContent="center">
-        <img
-          src={INTRO_BG}
-          style={{ position: 'absolute', top: 0, right: 0, zIndex: -10, width: 600 }}
-        />
-        <Container>
-          <Typography maxWidth="700px" lineHeight="5.5rem" variant="h1">
+      <div className=" container h-dvh pt-[50px]">
+        <img src={INTRO_BG} className="absolute top-0 right-0 -z-10 hidden md:block w-[600px]" />
+        <div className="pt-24 ">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold">
             Koordynuj swój własny turniej z nami
-          </Typography>
-          <Typography maxWidth="400px" color={COLOR.LIGHT_GREY_TEXT} mb={5} mt={3}>
-            Stwórz swoją ligę badmintona i bądź na bieżąco z wynikami swoich zawodników. Niech
-            emocje związane z grą nigdy nie opuszczają Cię!
-          </Typography>
+          </h1>
 
-          <Stack gap={1} alignItems="center" width="fit-content">
+          <Typography maxWidth="400px" color={COLOR.LIGHT_GREY_TEXT} mb={5} mt={3}>
+            Stwórz swój własny turniej badmintona i bądź na bieżąco z wynikami swoich zawodników.
+            Niech emocje związane z grą nigdy nie opuszczają Cię!
+          </Typography>
+          <div className="flex items-center w-fit gap-1 flex-col">
             <NavLink to={PATH_CREATE_LEAGUE.REGISTER}>
               <Button variant="contained" color="primary" size="large">
                 Zarejestruj się
@@ -39,13 +36,13 @@ const HomePage = () => {
                 Zaloguj się
               </Button>
             </NavLink>
-          </Stack>
-        </Container>
-      </Stack>
+          </div>
+        </div>
+      </div>
       <HowToSection />
       <PlansSection />
       <Footer />
-    </>
+    </div>
   );
 };
 

@@ -1,15 +1,12 @@
-import { Stack } from '@mui/material';
-import OVAL_BG from '@/assets/footer-oval-bg.svg';
 import PlanCard from './PlanCard';
+
+import OVAL_BG from '@/assets/footer-oval-bg.svg';
 
 const PlansSection = () => {
   return (
-    <Stack position={'relative'} pt={10}>
-      <img
-        src={OVAL_BG}
-        style={{ marginBottom: -1, position: 'absolute', bottom: 0, zIndex: -1 }}
-      />
-      <Stack flexDirection="row" alignItems="center" justifyContent="center" gap={5}>
+    <div className="relative pt-10">
+      <img src={OVAL_BG} className="absolute bottom-0 -z-10 -mb-1" />
+      <div className="flex flex-col-reverse sm:flex-row gap-5 justify-center">
         <PlanCard
           title="Wersja darmowa"
           desc="Sprawdź jak działa nasz system!"
@@ -19,6 +16,7 @@ const PlansSection = () => {
           ]}
           btnText="Wypróbuj"
         />
+
         <PlanCard
           title="Wersja rozszerzona"
           desc="Regularnie organizujesz turnieje? Zapewnij sobie dostęp do wszystkich możliwości naszego systemu! "
@@ -30,8 +28,8 @@ const PlansSection = () => {
           btnText="Kup 60 zł/mies"
           main={true}
         />
-      </Stack>
-    </Stack>
+      </div>
+    </div>
   );
 };
 
