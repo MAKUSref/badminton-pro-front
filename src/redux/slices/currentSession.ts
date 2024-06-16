@@ -14,6 +14,7 @@ export interface CurrentSessionContext {
   tournamentStatus: TournamentStatus;
   sessionToken?: string;
   accounts?: (Account & { id: string })[];
+  cookiesAccepted?: boolean;
 }
 
 const initialState: CurrentSessionContext = {
@@ -43,10 +44,13 @@ const currentSessionSlice = createSlice({
     },
     registerAccount(state, action: PayloadAction<Account>) {
       state.accounts?.push({ ...action.payload, id: crypto.randomUUID() });
+    },
+    acceptCookies(state) {
+      state.cookiesAccepted = true;
     }
   }
 });
 
-export const { setTournamentStatus, setToken, logout, registerAccount } =
+export const { setTournamentStatus, setToken, logout, registerAccount, acceptCookies } =
   currentSessionSlice.actions;
 export default currentSessionSlice.reducer;

@@ -40,8 +40,8 @@ const HowToSection = () => {
               gier - <strong>singiel męski i damski</strong>.
             </Typography>
           </div>
-          <div className="">
-            <img className="" src={HOW_TO_2} />
+          <div className="text-center md:text-right">
+            <img className="inline-block" src={HOW_TO_2} />
           </div>
         </div>
         <div className="flex gap-16 flex-col-reverse sm:flex-row">

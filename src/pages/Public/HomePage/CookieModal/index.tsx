@@ -1,12 +1,19 @@
 import { Button } from '@mui/material';
-import { useState } from 'react';
 
 import COOKIE_PDF from '@/bin/cookies.pdf';
+import { acceptCookies } from '@/redux/slices/currentSession';
+import { useAppDispatch, useAppSelector } from '@/redux/store';
 
 const CookieModal = () => {
-  const [open, setOpen] = useState(true);
+  const { cookiesAccepted } = useAppSelector((state) => state.currentSession);
 
-  if (!open) return null;
+  const dispatch = useAppDispatch();
+
+  const handleAcceptCookies = () => {
+    dispatch(acceptCookies());
+  };
+
+  if (cookiesAccepted) return null;
 
   return (
     <>
@@ -30,7 +37,7 @@ const CookieModal = () => {
             </p>
           </div>
           <div>
-            <Button variant="contained" color="primary" onClick={() => setOpen(false)}>
+            <Button variant="contained" color="primary" onClick={handleAcceptCookies}>
               Zaakceptuj
             </Button>
           </div>
