@@ -1,12 +1,17 @@
 import { Box, Container, Stack, TextField, Typography } from '@mui/material';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
+import { toast } from 'react-toastify';
 
+import PayModal from './PayModal';
+
+import PricingSection from '@/components/settings/PricingSection';
 import SettingsSection from '@/components/settings/SettingsSection';
 import { useAppSelector } from '@/redux/store';
 
-const ProfiePage = () => {
+const ProfilePage = () => {
   const { accounts, sessionToken } = useAppSelector((state) => state.currentSession);
-
+  const [isActivated, setIsActivated] = useState(false);
+  const [open, setOpen] = useState(false);
   const user = useMemo(() => accounts?.find((acc) => acc.id === sessionToken), []);
 
   return (
@@ -15,12 +20,13 @@ const ProfiePage = () => {
         <Typography variant="h2" mt={2} mb={4}>
           Moje konto
         </Typography>
-        <SettingsSection title="Imie i nazwisko" description="Zmiana danych osobowych.">
+        {!isActivated && <PricingSection onSave={() => setOpen(true)} />}
+
+        <SettingsSection
+          title="Nazwa organizatora"
+          description="Zmiana danych organizatora turnieju">
           <Box my={2} maxWidth="650px">
-            <TextField size="small" label="Imie" defaultValue={user?.firstName} fullWidth />
-          </Box>
-          <Box my={2} maxWidth="650px">
-            <TextField size="small" label="Nazwisko" defaultValue={user?.lastName} fullWidth />
+            <TextField size="small" label="Imie" defaultValue={user?.organizatorName} fullWidth />
           </Box>
         </SettingsSection>
 
@@ -42,15 +48,37 @@ const ProfiePage = () => {
             <TextField size="small" label="Powtórz nowe hasło" fullWidth type="password" />
           </Box>
         </SettingsSection>
-
-        <SettingsSection
-          title="Usuń konto"
-          description="Uwaga! Ta opcja bezpowrotnie usunie twój profil."
-          btnLabel="Usuń"
-          sectionVariant="danger"></SettingsSection>
+        {isActivated && (
+          <>
+            <SettingsSection
+              title="Zmień dane karty"
+              description="Zmień dane karty płatniczej, którą opłacasz subskrypcję wersji rozszerzonej"
+              btnLabel="Zmień"
+              sectionVariant="primary"
+              onSave={() => {
+                setOpen(true);
+              }}
+            />
+            <SettingsSection
+              title="Anuluj subskrypcję"
+              description="Uwaga! Jak anulujesz subskrypcję stracisz dostęp oraz dane do wcześniej odbytych turnieji"
+              btnLabel="Anuluj subskrypcję"
+              sectionVariant="danger"
+              onSave={() => setIsActivated(false)}
+            />
+          </>
+        )}
       </Stack>
+      <PayModal
+        onSave={() => {
+          setIsActivated(true);
+          toast.success('Twoje konto jest teraz w rozszerzonej wersji');
+        }}
+        close={() => setOpen(false)}
+        open={open}
+      />
     </Container>
   );
 };
 
-export default ProfiePage;
+export default ProfilePage;

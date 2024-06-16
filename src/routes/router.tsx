@@ -6,7 +6,7 @@ import Organizer from '@/pages/Organizer';
 import GamesSchedulePage from '@/pages/Organizer/GamesSchedulePage';
 import SinglesPage from '@/pages/Organizer/groups/SinglesPage';
 import PlayersPage from '@/pages/Organizer/PlayersPage';
-import ProfiePage from '@/pages/Organizer/ProfilePage';
+import ProfilePage from '@/pages/Organizer/ProfilePage';
 import SettingsPage from '@/pages/Organizer/SettingsPage';
 import HomePage from '@/pages/Public/HomePage';
 import LoginPage from '@/pages/Public/LoginPage';
@@ -36,7 +36,7 @@ const router = createBrowserRouter([
       },
       {
         path: PATH.MY_ACCOUNT,
-        element: <ProfiePage />
+        element: <ProfilePage />
       },
       {
         path: PATH.SETTINGS,
