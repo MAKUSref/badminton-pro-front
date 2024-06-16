@@ -2,6 +2,8 @@ import { Button, Stack, Typography } from '@mui/material';
 
 import CHECK_IMG from '@/assets/check.png';
 import EXTRA_PLAN from '@/assets/extra-plan-icon.png';
+import COLOR from '@/themes/colors';
+import { NavLink } from 'react-router-dom';
 
 interface PlanCardProps {
   title: string;
@@ -38,10 +40,21 @@ const PlanCard = ({ pros, main, title, desc, btnText }: PlanCardProps) => {
               </Stack>
             ))}
           </Stack>
-
-          <Button variant={main ? 'contained' : 'outlined'} fullWidth sx={{ width: '100%' }}>
-            {btnText}
-          </Button>
+          {main ? (
+            <Typography
+              fontSize={'1.5rem'}
+              color={COLOR.PRIMARY}
+              fontWeight="bold"
+              textAlign="center">
+              66 zł/mies
+            </Typography>
+          ) : (
+            <NavLink to="/register">
+              <Button variant={main ? 'contained' : 'outlined'} fullWidth sx={{ width: '100%' }}>
+                {btnText}
+              </Button>
+            </NavLink>
+          )}
         </Stack>
       </Stack>
     </div>
