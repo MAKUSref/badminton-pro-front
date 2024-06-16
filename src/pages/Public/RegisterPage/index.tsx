@@ -1,9 +1,18 @@
-import { Box, Button, Stack, TextField, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  Checkbox,
+  FormControlLabel,
+  Stack,
+  TextField,
+  Typography
+} from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import INTRO_BG from '@/assets/intro-bg.svg';
+import POLICY_PDF from '@/bin/policy.pdf';
 import Logo from '@/components/Logo';
 import { registerAccount } from '@/redux/slices/currentSession';
 import { useAppDispatch } from '@/redux/store';
@@ -11,11 +20,11 @@ import PATH_CREATE_LEAGUE from '@/routes/urls';
 import COLOR from '@/themes/colors';
 
 interface RegisterSchema {
-  firstName: string;
-  lastName: string;
+  organizatorName: string;
   email: string;
   password: string;
   repeatPassword: string;
+  policy: boolean;
 }
 
 const RegisterPage = () => {
@@ -23,10 +32,16 @@ const RegisterPage = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const onSubmit = ({ email, firstName, lastName, password, repeatPassword }: RegisterSchema) => {
-    if (email && firstName && lastName && password && repeatPassword) {
+  const onSubmit = ({
+    email,
+    organizatorName,
+    password,
+    repeatPassword,
+    policy
+  }: RegisterSchema) => {
+    if (email && organizatorName && password && repeatPassword && policy) {
       if (password === repeatPassword) {
-        dispatch(registerAccount({ email, password, firstName, lastName }));
+        dispatch(registerAccount({ email, password, organizatorName }));
         toast.success('Zarejestrowano pomyślnie!');
         navigate(PATH_CREATE_LEAGUE.LOGIN);
         return;
@@ -68,10 +83,12 @@ const RegisterPage = () => {
               </NavLink>
             </Stack>
             <Box mb={3}>
-              <TextField {...register('firstName')} label="Imię" size="small" fullWidth />
-            </Box>
-            <Box mb={3}>
-              <TextField {...register('lastName')} label="Nazwisko" size="small" fullWidth />
+              <TextField
+                {...register('organizatorName')}
+                label="Nazwa organizatora"
+                size="small"
+                fullWidth
+              />
             </Box>
             <Box mb={3}>
               <TextField {...register('email')} label="E-mail" size="small" fullWidth />
@@ -85,7 +102,7 @@ const RegisterPage = () => {
                 fullWidth
               />
             </Box>
-            <Box mb={3}>
+            <Box mb={1}>
               <TextField
                 {...register('repeatPassword')}
                 label="Powtórz hasło"
@@ -94,7 +111,29 @@ const RegisterPage = () => {
                 fullWidth
               />
             </Box>
-            <Typography variant="body1">
+            <FormControlLabel
+              control={<Checkbox {...register('policy')} />}
+              className="mb-4"
+              label={
+                <Typography>
+                  Zapoznałem się z{' '}
+                  <a
+                    className="text-[#4A5CF9] underline font-semibold"
+                    href={POLICY_PDF}
+                    target="_blank"
+                    rel="noreferrer">
+                    regulaminem
+                  </a>{' '}
+                  i akceptuje jego treść.
+                </Typography>
+              }
+            />
+            <Box>
+              <Button sx={{ mx: 'auto', display: 'block' }} variant="contained" type="submit">
+                Zarejestruj się
+              </Button>
+            </Box>
+            <Typography variant="body1" className="text-center pt-3">
               Masz już konto?{' '}
               <NavLink
                 to={PATH_CREATE_LEAGUE.LOGIN}
@@ -104,11 +143,6 @@ const RegisterPage = () => {
                 </Typography>
               </NavLink>
             </Typography>
-            <Box mt={3}>
-              <Button sx={{ mx: 'auto', display: 'block' }} variant="contained" type="submit">
-                Zarejestruj się
-              </Button>
-            </Box>
           </form>
         </Stack>
       </Stack>

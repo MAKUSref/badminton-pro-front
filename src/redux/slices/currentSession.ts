@@ -5,8 +5,7 @@ import { TournamentStatus } from '../types/common';
 interface Account {
   email: string;
   password: string;
-  firstName: string;
-  lastName: string;
+  organizatorName: string;
 }
 
 export type ThemeMode = 'light' | 'dark';
@@ -24,8 +23,7 @@ const initialState: CurrentSessionContext = {
       id: crypto.randomUUID(),
       email: 'jan.kowalski@example.com',
       password: 'password123',
-      firstName: 'Jan',
-      lastName: 'Kowalski'
+      organizatorName: 'Klub sportowy RelaxBad'
     }
   ]
 };
